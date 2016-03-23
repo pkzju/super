@@ -27,7 +27,6 @@
 #include "functionpages/qssbuilder.h"
 
 #include <QVBoxLayout>
-#include "consolepart0.h"
 
 
 class CenterWindow : public FCenterWindow
@@ -37,7 +36,6 @@ class CenterWindow : public FCenterWindow
 private:
 
     QssBuilder* qssBuilder;
-    consolepart0 *consolepart;
 
 public:
     explicit CenterWindow(QWidget *parent = 0);

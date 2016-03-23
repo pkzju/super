@@ -126,6 +126,11 @@ QLabel#qssBuilderLabel{
 }
 /* ******************QLabel****************** */
 
+/* ******************QCheckBox****************** */
+QCheckBox{
+	font-size: 16px;
+	alignment:right}
+	
 /* ******************QPushButton****************** */
 QPushButton{
     background-color: rgb(14, 142, 231);
@@ -259,6 +264,7 @@ QSizeGrip {
 QGroupBox {
 	border: 0.5px solid rgba(12, 112, 208, 255);
     margin-top: 5px;  /*leave space at the top for the title */
+	padding-top: 8px;
 	font-size: 16px;
 }
 

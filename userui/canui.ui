@@ -20,20 +20,50 @@
 	
     /*font-family: 'Verdana';*/
     font-size: 16px;}
-QPushButton{ 
-	background-color: rgb(14, 142, 231);
+
+/* ******************QPushButton****************** */
+QPushButton{
+    background-color: rgb(14, 142, 231);
 	border-style: outset;
     border-width: 2px;
 	border-radius: 6px;
     color: white;
-    font-size: 16px;}
+	font-size: 16px;
+}
+
+QPushButton:hover{
+    background-color: rgb(57, 159, 251);
+}
+
+QPushButton:pressed{
+    background-color: rgb(0, 125, 213);
+}
+
+QPushButton:disabled{
+    background-color: gray;
+}
+
 QCheckBox{
 	font-size: 16px;
 	alignment:right}
+/* ******************QGroupBox****************** */
 QGroupBox {
 	border: 0.5px solid rgba(12, 112, 208, 255);
+    margin-top: 5px;  /*leave space at the top for the title */
 	padding-top: 8px;
-	font-size: 16px;}
+	font-size: 16px;
+}
+
+QGroupBox::title {
+    subcontrol-origin: margin;
+	/* position at the top center */
+    subcontrol-position: top left; 
+    /*padding: 5px 5px;*/
+    font-size: 16px;
+    font-weight:  bold;
+    color:rgb(60, 104, 137);
+}
+
 </string>
   </property>
   <property name="frameShape">

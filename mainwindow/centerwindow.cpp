@@ -22,7 +22,6 @@
 
 #include "centerwindow.h"
 #include <QHBoxLayout>
-#include "QFramer/fsetpushbutton.h"
 #include <qgridlayout.h>
 #include "userui/canui.h"
 
@@ -36,12 +35,11 @@ CenterWindow::CenterWindow(QWidget *parent) :
 void CenterWindow::initUI()
 {
     qssBuilder = new QssBuilder;
-  //  consolepart = new consolepart0;
     CANUi *canUi = CANUi::getS_Instance();
 
     addWidget(tr("Home"), "Home", canUi);
 
-  //  addWidget(tr("QssBuilder"),"QssBuilder", consolepart);//windows size is not ok
+    addWidget(tr("QssBuilder"),"QssBuilder", qssBuilder);//windows size is not ok
 
     setAlignment(TopCenter);
 }

@@ -1,37 +1,30 @@
 HEADERS += \
-    QFramer/fbasedialog.h \
-    QFramer/fbasepushbutton.h \
     QFramer/fcenterwindow.h \
-    QFramer/fcheckablebutton.h \
-    QFramer/flywidget.h \
     QFramer/fmainwindow.h \
-    QFramer/fmovablewidget.h \
     QFramer/fnavgationbar.h \
-    QFramer/fnofocusdelegate.h \
-    QFramer/fshadowlabel.h \
-    QFramer/fstatebutton.h \
     QFramer/ftabwidget.h \
     QFramer/ftitlebar.h \
     QFramer/futil.h \
-    QFramer/fwigglywidget.h \
     $$PWD/ftoolbutton.h \
-    $$PWD/fsetpushbutton.h
+    $$PWD/fcheckablebutton.h \
+    $$PWD/fbasedialog.h \
+    $$PWD/fbasepushbutton.h \
+    $$PWD/flywidget.h \
+    $$PWD/fmovablewidget.h \
+    $$PWD/fshadowlabel.h
 
 SOURCES += \
-    QFramer/fbasedialog.cpp \
-    QFramer/fbasepushbutton.cpp \
     QFramer/fcenterwindow.cpp \
-    QFramer/fcheckablebutton.cpp \
-    QFramer/flywidget.cpp \
     QFramer/fmainwindow.cpp \
-    QFramer/fmovablewidget.cpp \
     QFramer/fnavgationbar.cpp \
-    QFramer/fnofocusdelegate.cpp \
-    QFramer/fshadowlabel.cpp \
-    QFramer/fstatebutton.cpp \
     QFramer/ftabwidget.cpp \
     QFramer/ftitlebar.cpp \
     QFramer/futil.cpp \
-    QFramer/fwigglywidget.cpp \
     $$PWD/ftoolbutton.cpp \
-    $$PWD/fsetpushbutton.cpp
+    $$PWD/fcheckablebutton.cpp \
+    $$PWD/fbasedialog.cpp \
+    $$PWD/fbasepushbutton.cpp \
+    $$PWD/flywidget.cpp \
+    $$PWD/fmovablewidget.cpp \
+    $$PWD/fshadowlabel.cpp
+

@@ -48,51 +48,31 @@ SOURCES += \
     dialogs/aboutdialog.cpp \
     dialogs/bgskinpopup.cpp \
     dialogs/settingdialog.cpp \
-    functionpages/ftablewidget.cpp \
-    functionpages/gradientshow.cpp \
     functionpages/rightfloatwindow.cpp \
     mainwindow/centerwindow.cpp \
     mainwindow/mainwindow.cpp \
     mainwindow/settingmenu.cpp \
     mainwindow/settingmenucontroller.cpp \
     mainwindow/thememenu.cpp \
-    qcustomplot/fcustomplot.cpp \
-    qcustomplot/qcustomplot.cpp \
     main.cpp \
-    functionpages/animationgradientlabel.cpp \
     functionpages/qssbuilder.cpp \
     lamp/qcw_indicatorlamp.cpp \
-    console/console.cpp \
-    consolepart0.cpp \
-    canoperate.cpp \
-    thread/canthread.cpp \
-    CustomComponents/keybutton.cpp \
-    CustomComponents/qkeycheckbox.cpp
+    thread/canthread.cpp
 
 # header
 HEADERS  += \
     dialogs/aboutdialog.h \
     dialogs/bgskinpopup.h \
     dialogs/settingdialog.h \
-    functionpages/ftablewidget.h \
-    functionpages/gradientshow.h \
     functionpages/rightfloatwindow.h \
     mainwindow/centerwindow.h \
     mainwindow/mainwindow.h \
     mainwindow/settingmenu.h \
     mainwindow/settingmenucontroller.h \
     mainwindow/thememenu.h \
-    qcustomplot/fcustomplot.h \
-    qcustomplot/qcustomplot.h \
-    functionpages/animationgradientlabel.h \
     functionpages/qssbuilder.h \
     lamp/qcw_indicatorlamp.h \
-    console/console.h \
-    consolepart0.h \
-    canoperate.h \
-    thread/canthread.h \
-    CustomComponents/keybutton.h \
-    CustomComponents/qkeycheckbox.h
+    thread/canthread.h
 
 # resources
 RESOURCES += \
@@ -111,9 +91,7 @@ contains(QT_MAJOR_VERSION, 5){
 }
 qtHaveModule(QWebView): QT += QWebView
 
-FORMS += \
-    consolepart0.ui \
-    canoperate.ui
+FORMS +=
 
 LIBS += -LC:\Users\pengkang\Desktop\QFramer-my\lib -lControlCAN
 
