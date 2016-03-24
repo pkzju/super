@@ -52,11 +52,6 @@ void SettingMenuController::onlineHelp()
     QDesktopServices::openUrl(QUrl("https://baidu.com"));
 }
 
-void SettingMenuController::visitOfficialSite()
-{
-    QDesktopServices::openUrl(QUrl("https://baidu.com"));
-}
-
 void SettingMenuController::showAboutUs()
 {
     MainWindow::getInstance()->show();

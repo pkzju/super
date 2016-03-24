@@ -85,6 +85,8 @@ void FMainWindow::initConnect( )
     connect(trayicon, SIGNAL(activated(QSystemTrayIcon::ActivationReason)),
             this, SLOT(onSystemTrayIconClicked(QSystemTrayIcon::ActivationReason)));
     connect(titleBar, SIGNAL(LockChanged(bool)), this, SLOT(setLocked(bool)));
+
+    connect(flyWidget, SIGNAL(doubleClicked()), this, SLOT(onflyWidgetDoubleClicked()));
 }
 
 void FMainWindow::readSettings()
@@ -121,6 +123,11 @@ bool FMainWindow::isLocked()
 void FMainWindow::setLocked(bool flag)
 {
     m_isLocked = flag;
+}
+
+void FMainWindow::onflyWidgetDoubleClicked()
+{
+    this->setVisible(!isVisible());
 }
 
 FTitleBar* FMainWindow::getTitleBar()

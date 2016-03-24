@@ -85,6 +85,7 @@ public slots:
     void showFlyWidget();
     void onSystemTrayIconClicked(QSystemTrayIcon::ActivationReason reason);
     void setLocked(bool flag);
+    void onflyWidgetDoubleClicked();
 };
 
 #endif // MAINWINDOW_H

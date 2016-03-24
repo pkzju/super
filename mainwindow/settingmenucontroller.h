@@ -37,7 +37,6 @@ public slots:
     void showSettingDialog();
     void checkUpdate();
     void onlineHelp();
-    void visitOfficialSite();
     void showAboutUs();
     void closeMainWindow();
 };

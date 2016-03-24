@@ -17,7 +17,9 @@
 MainWindow* MainWindow::instance = 0;
 
 MainWindow::MainWindow(QWidget *parent) :
-    FMainWindow(parent)
+    FMainWindow(parent),
+    centerWindow(new CenterWindow), settingMenu (new SettingMenu),
+    themeMenu(new ThemeMenu), rightfloatWindow(new RightFloatWindow)
 {
     initData();
     initUI();
@@ -33,21 +35,17 @@ void MainWindow::initData()
 void MainWindow::initUI()
 {
     // set centerWindow
-    centerWindow = new CenterWindow;
     setCentralWidget(centerWindow);
     centerWindow->getNavgationBar()->setCurrentIndex(0);
 
     // set setting Menu
-    settingMenu = new SettingMenu;
     getTitleBar()->getSettingButton()->setMenu(settingMenu);
     getQSystemTrayIcon()->setContextMenu(settingMenu);
     getFlyWidget()->setMenu(settingMenu);
 
     // set theme Menu
-    themeMenu = new ThemeMenu;
     getTitleBar()->getSkinButton()->setMenu(themeMenu);
 
-    rightfloatWindow = new RightFloatWindow;
     QGridLayout *gdLayout = new QGridLayout();
     rightfloatWindow->setLayout(gdLayout);
 

@@ -1,4 +1,4 @@
-/****************************************************************************
+﻿/****************************************************************************
 **
 ** Copyright (C) 2014 dragondjf
 **
@@ -37,10 +37,13 @@ SettingMenu::SettingMenu(QWidget *parent) :
 
 void SettingMenu::initData()
 {
-    actionNames<< tr("Show flyWindow")<<tr("Settings")\
-              << tr("Show rightBar")\
-              << tr("Check update") << tr("Online help") \
-              << tr("Office site") << tr("About us")<< tr("Quit");
+    actionNames << QStringLiteral("设置")\
+                << QStringLiteral("显示浮窗")\
+                << QStringLiteral("显示工具栏")\
+                << QStringLiteral("检查更新")\
+                << QStringLiteral("帮助") \
+                << QStringLiteral("关于……") \
+                << QStringLiteral("退出");
 }
 
 void SettingMenu::initUI()
@@ -60,14 +63,13 @@ void SettingMenu::initController()
 
 void SettingMenu::initConnect()
 {
-    connect(actionMaps[tr("Show flyWindow")], SIGNAL(triggered()), this, SLOT(switchActionState()));
-    connect(actionMaps[tr("Show rightBar")], SIGNAL(triggered()), this, SLOT(switchFloatWindow()));
-    connect(actionMaps[tr("Settings")], SIGNAL(triggered()), controller, SLOT(showSettingDialog()));
-    connect(actionMaps[tr("Check update")], SIGNAL(triggered()), controller, SLOT(checkUpdate()));
-    connect(actionMaps[tr("Online help")], SIGNAL(triggered()), controller, SLOT(onlineHelp()));
-    connect(actionMaps[tr("Office site")], SIGNAL(triggered()), controller, SLOT(visitOfficialSite()));
-    connect(actionMaps[tr("About us")], SIGNAL(triggered()), controller, SLOT(showAboutUs()));
-    connect(actionMaps[tr("Quit")], SIGNAL(triggered()), controller, SLOT(closeMainWindow()));
+    connect(actionMaps[QStringLiteral("设置")], SIGNAL(triggered()), controller, SLOT(showSettingDialog()));
+    connect(actionMaps[QStringLiteral("显示浮窗")], SIGNAL(triggered()), this, SLOT(switchActionState()));
+    connect(actionMaps[QStringLiteral("显示工具栏")], SIGNAL(triggered()), this, SLOT(switchFloatWindow()));
+    connect(actionMaps[QStringLiteral("检查更新")], SIGNAL(triggered()), controller, SLOT(checkUpdate()));
+    connect(actionMaps[QStringLiteral("帮助")], SIGNAL(triggered()), controller, SLOT(onlineHelp()));
+    connect(actionMaps[QStringLiteral("关于……")], SIGNAL(triggered()), controller, SLOT(showAboutUs()));
+    connect(actionMaps[QStringLiteral("退出")], SIGNAL(triggered()), controller, SLOT(closeMainWindow()));
 }
 
 QMap<QString, QAction*> SettingMenu::getActionMaps()
@@ -83,11 +85,11 @@ void SettingMenu::switchActionState()
 
     if(MainWindow::getInstance()->getFlyWidget()->isVisible())
     {
-        actionMaps[tr("Show flyWindow")]->setText(tr("Hide flyWindow"));
+        actionMaps[QStringLiteral("显示浮窗")]->setText(QStringLiteral("隐藏浮窗"));
     }
     else
     {
-        actionMaps[tr("Show flyWindow")]->setText(tr("Show flyWindow"));
+        actionMaps[QStringLiteral("显示浮窗")]->setText(QStringLiteral("显示浮窗"));
     }
 }
 
