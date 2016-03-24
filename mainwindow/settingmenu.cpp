@@ -37,6 +37,7 @@ SettingMenu::SettingMenu(QWidget *parent) :
 
 void SettingMenu::initData()
 {
+    setObjectName("titleMenu");
     actionNames << QStringLiteral("设置")\
                 << QStringLiteral("显示浮窗")\
                 << QStringLiteral("显示工具栏")\

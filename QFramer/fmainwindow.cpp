@@ -95,11 +95,13 @@ void FMainWindow::readSettings()
    int w = desktopWidget->availableGeometry().width();
    int h = desktopWidget->availableGeometry().height();
    qDebug() << w << h;
+   setMinimumSize(QSize(w * 0.7, h * 0.9));
    QSettings settings(QDir::currentPath() + "/QFramer.ini", QSettings::IniFormat);
    settings.beginGroup("FMainWindow");
-   resize(settings.value("size", QSize(w * 0.6, h * 0.8)).toSize());
+   resize(settings.value("size", QSize(w * 0.7, h * 0.9)).toSize());
    move(settings.value("pos", QPoint(w * 0.2, h * 0.1)).toPoint());
    settings.endGroup();
+   qDebug() << this->size();
 
 }
 
@@ -107,6 +109,7 @@ void FMainWindow::writeSettings()
 {
     QSettings settings(QDir::currentPath() + "/QFramer.ini", QSettings::IniFormat);
     qDebug(qPrintable(QDir::currentPath() + "/QFramer.ini"));
+    qDebug() << this->size();
     settings.beginGroup("FMainWindow");
     settings.setValue("size", this->size());
     settings.setValue("pos", pos());

@@ -38,7 +38,6 @@ FCenterWindow::FCenterWindow(QWidget *parent)
     initData();
     initUI();
     initConnect();
-    qDebug() << this->size();
 }
 
 void FCenterWindow::initData()

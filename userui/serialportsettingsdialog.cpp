@@ -1,54 +1,24 @@
 /****************************************************************************
 **
-** Copyright (C) 2012 Denis Shienkov <denis.shienkov@gmail.com>
-** Copyright (C) 2012 Laszlo Papp <lpapp@kde.org>
-** Contact: http://www.qt-project.org/legal
-**
-** This file is part of the QtSerialPort module of the Qt Toolkit.
-**
-** $QT_BEGIN_LICENSE:LGPL21$
-** Commercial License Usage
-** Licensees holding valid commercial Qt licenses may use this file in
-** accordance with the commercial license agreement provided with the
-** Software or, alternatively, in accordance with the terms contained in
-** a written agreement between you and Digia. For licensing terms and
-** conditions see http://qt.digia.com/licensing. For further information
-** use the contact form at http://qt.digia.com/contact-us.
-**
-** GNU Lesser General Public License Usage
-** Alternatively, this file may be used under the terms of the GNU Lesser
-** General Public License version 2.1 or version 3 as published by the Free
-** Software Foundation and appearing in the file LICENSE.LGPLv21 and
-** LICENSE.LGPLv3 included in the packaging of this file. Please review the
-** following information to ensure the GNU Lesser General Public License
-** requirements will be met: https://www.gnu.org/licenses/lgpl.html and
-** http://www.gnu.org/licenses/old-licenses/lgpl-2.1.html.
-**
-** In addition, as a special exception, Digia gives you certain additional
-** rights. These rights are described in the Digia Qt LGPL Exception
-** version 1.1, included in the file LGPL_EXCEPTION.txt in this package.
-**
-** $QT_END_LICENSE$
 **
 ****************************************************************************/
 
-#include "settingsdialog/settingsdialog.h"
-#include "ui_settingsdialog.h"
+#include "serialportsettingsdialog.h"
+#include "ui_serialportsettingsdialog.h"
 
 #include <QtSerialPort/QSerialPortInfo>
 #include <QIntValidator>
 #include <QLineEdit>
-#include "uartthread/slavethread.h"
 
 QT_USE_NAMESPACE
 
-static const char blankString[] = QT_TRANSLATE_NOOP("SettingsDialog", "N/A");
+static const char blankString[] = QT_TRANSLATE_NOOP("SerialPortSettingsDialog", "N/A");
 
-SettingsDialog *SettingsDialog::instance = NULL;
+SerialPortSettingsDialog *SerialPortSettingsDialog::instance = NULL;
 
-SettingsDialog::SettingsDialog(QWidget *parent) :
-    QDialog(parent),
-    ui(new Ui::SettingsDialog)
+SerialPortSettingsDialog::SerialPortSettingsDialog(QWidget *parent) :
+    QWidget(parent),
+    ui(new Ui::SerialPortSettingsDialog)
 {
     ui->setupUi(this);
 
@@ -71,26 +41,26 @@ SettingsDialog::SettingsDialog(QWidget *parent) :
     updateSettings();
 }
 
-SettingsDialog::~SettingsDialog()
+SerialPortSettingsDialog::~SerialPortSettingsDialog()
 {
     delete ui;
 }
 
-SettingsDialog* SettingsDialog::getInstance()
+SerialPortSettingsDialog* SerialPortSettingsDialog::getInstance()
 {
     if(!instance)
     {
-        instance = new SettingsDialog();
+        instance = new SerialPortSettingsDialog();
     }
     return instance;
 }
 
-SettingsDialog::Settings SettingsDialog::settings() const
+SerialPortSettingsDialog::Settings SerialPortSettingsDialog::settings() const
 {
     return currentSettings;
 }
 
-void SettingsDialog::setSettings(SettingsDialog::Settings s)
+void SerialPortSettingsDialog::setSettings(SerialPortSettingsDialog::Settings s)
 {
     currentSettings = s;
     ui->serialPortInfoListBox->setCurrentText(s.name);
@@ -102,7 +72,7 @@ void SettingsDialog::setSettings(SettingsDialog::Settings s)
 
 }
 
-void SettingsDialog::showPortInfo(int idx)
+void SerialPortSettingsDialog::showPortInfo(int idx)
 {
     if (idx == -1)
         return;
@@ -116,20 +86,15 @@ void SettingsDialog::showPortInfo(int idx)
     ui->pidLabel->setText(tr("Product Identifier: %1").arg(list.count() > 6 ? list.at(6) : tr(blankString)));
 }
 
-void SettingsDialog::apply()
+void SerialPortSettingsDialog::apply()
 {
     updateSettings();
    // hide();
     emit emitApply(0);
-    SlaveThread *slaveThread = SlaveThread::getInstance();
-    if(slaveThread->isOpen() == true)
-    {
-        slaveThread->reStartThread(currentSettings);
-   }
 
 }
 
-void SettingsDialog::checkCustomBaudRatePolicy(int idx)
+void SerialPortSettingsDialog::checkCustomBaudRatePolicy(int idx)
 {
     bool isCustomBaudRate = !ui->baudRateBox->itemData(idx).isValid();
     ui->baudRateBox->setEditable(isCustomBaudRate);
@@ -140,7 +105,7 @@ void SettingsDialog::checkCustomBaudRatePolicy(int idx)
     }
 }
 
-void SettingsDialog::checkCustomDevicePathPolicy(int idx)
+void SerialPortSettingsDialog::checkCustomDevicePathPolicy(int idx)
 {
     bool isCustomPath = !ui->serialPortInfoListBox->itemData(idx).isValid();
     ui->serialPortInfoListBox->setEditable(isCustomPath);
@@ -148,7 +113,7 @@ void SettingsDialog::checkCustomDevicePathPolicy(int idx)
         ui->serialPortInfoListBox->clearEditText();
 }
 
-void SettingsDialog::fillPortsParameters()
+void SerialPortSettingsDialog::fillPortsParameters()
 {
     ui->baudRateBox->addItem(QStringLiteral("9600"), QSerialPort::Baud9600);
     ui->baudRateBox->addItem(QStringLiteral("19200"), QSerialPort::Baud19200);
@@ -180,7 +145,7 @@ void SettingsDialog::fillPortsParameters()
     ui->flowControlBox->addItem(tr("XON/XOFF"), QSerialPort::SoftwareControl);
 }
 
-void SettingsDialog::fillPortsInfo()
+void SerialPortSettingsDialog::fillPortsInfo()
 {
     ui->serialPortInfoListBox->clear();
     QString description;
@@ -205,7 +170,7 @@ void SettingsDialog::fillPortsInfo()
     ui->serialPortInfoListBox->addItem(tr("Custom"));
 }
 
-void SettingsDialog::updateSettings()
+void SerialPortSettingsDialog::updateSettings()
 {
     currentSettings.name = ui->serialPortInfoListBox->currentText();
 
@@ -233,10 +198,9 @@ void SettingsDialog::updateSettings()
                 ui->flowControlBox->itemData(ui->flowControlBox->currentIndex()).toInt());
     currentSettings.stringFlowControl = ui->flowControlBox->currentText();
 
-    currentSettings.localEchoEnabled = ui->localEchoCheckBox->isChecked();
 }
 
-void SettingsDialog::on_searchButton_clicked()
+void SerialPortSettingsDialog::on_searchButton_clicked()
 {
     fillPortsInfo();
 }

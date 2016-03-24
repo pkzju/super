@@ -24,6 +24,7 @@
 #include <QHBoxLayout>
 #include <qgridlayout.h>
 #include "userui/canui.h"
+#include "userui/serialportui.h"
 
 CenterWindow::CenterWindow(QWidget *parent) :
     FCenterWindow(parent)
@@ -36,10 +37,10 @@ void CenterWindow::initUI()
 {
     qssBuilder = new QssBuilder;
     CANUi *canUi = CANUi::getS_Instance();
-
+    SerialPortUi *serialportsettingsdialog = new SerialPortUi;
     addWidget(tr("Home"), "Home", canUi);
 
-    addWidget(tr("QssBuilder"),"QssBuilder", qssBuilder);//windows size is not ok
+    addWidget(tr("QssBuilder"),"QssBuilder", serialportsettingsdialog);//windows size is not ok
 
     setAlignment(TopCenter);
 }

@@ -36,6 +36,7 @@ ThemeMenu::ThemeMenu(QWidget *parent) :
 
 void ThemeMenu::initData()
 {
+    setObjectName("titleMenu");
     actionNames<<tr("BB") << tr("GBG") << tr("Custom theme");
 }
 
