@@ -6,6 +6,28 @@ SerialPortUi::SerialPortUi(QWidget *parent) :
     ui(new Ui::SerialPortUi)
 {
     ui->setupUi(this);
+    initData();
+    initUI();
+    initThread();
+    initConnect();
+}
+void SerialPortUi::initData()
+{
+
+}
+
+void SerialPortUi::initUI()
+{
+
+}
+
+void SerialPortUi::initThread()
+{
+
+}
+
+void SerialPortUi::initConnect()
+{
     connect(ui->radioButton_CRCNO, SIGNAL(clicked()), this, SLOT(radioButton_CRC_clicked()));
     connect(ui->radioButton_CRC8, SIGNAL(clicked()), this, SLOT(radioButton_CRC_clicked()));
     connect(ui->radioButton_CRC16, SIGNAL(clicked()), this, SLOT(radioButton_CRC_clicked()));

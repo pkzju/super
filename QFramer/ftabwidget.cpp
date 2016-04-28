@@ -40,6 +40,7 @@ void FTabWidget::initUI()
     stackLayout = new QStackedLayout;
     tabLayout = new QVBoxLayout;
     tabLayout->addStretch();
+    tabLayout->addStretch();
     tabLayout->setContentsMargins(0, 0, 0, 0);
     tabLayout->setSpacing(0);
     tabTile->setLayout(tabLayout);
@@ -64,8 +65,8 @@ void FTabWidget::addWidget(const QString &tile, const QString &objectName, QWidg
     buttonTitles  << tile;
     FCheckabelButton* button = new FCheckabelButton(tile);
     buttons.append(button);
- //   button->setObjectName(objectName);
-    button->setFixedSize(200, 60);
+    button->setObjectName(objectName);
+    button->setFixedSize(80, 60);
     tabLayout->insertWidget(tabLayout->count() - 1, button);
     connect(button, SIGNAL(clicked()), this, SLOT(setButtonChecked()));
 //    widget->setObjectName(objectName);

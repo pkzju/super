@@ -1,4 +1,4 @@
-/****************************************************************************
+﻿/****************************************************************************
 **
 ** Copyright (C) 2014 dragondjf
 **
@@ -25,6 +25,8 @@
 #include <qgridlayout.h>
 #include "userui/canui.h"
 #include "userui/serialportui.h"
+#include "userui/mplotui.h"
+#include "QFramer/ftabwidget.h"
 
 CenterWindow::CenterWindow(QWidget *parent) :
     FCenterWindow(parent)
@@ -38,9 +40,13 @@ void CenterWindow::initUI()
     qssBuilder = new QssBuilder;
     CANUi *canUi = CANUi::getS_Instance();
     SerialPortUi *serialportsettingsdialog = new SerialPortUi;
-    addWidget(tr("Home"), "Home", canUi);
-
-    addWidget(tr("QssBuilder"),"QssBuilder", serialportsettingsdialog);//windows size is not ok
+    MPlotUi *plotUi = new MPlotUi;
+    FTabWidget *Com = new FTabWidget;
+    Com->addWidget(QStringLiteral("CAN"),"canBtn",canUi);
+    Com->addWidget(QStringLiteral("串口"),"serialportBtn",serialportsettingsdialog);
+ //   addWidget(QStringLiteral("主页"), "Home", canUi);
+    addWidget(QStringLiteral("曲线"), "MathPlot", plotUi);
+    addWidget(QStringLiteral("通信端口"),"Communication", Com);
 
     setAlignment(TopCenter);
 }

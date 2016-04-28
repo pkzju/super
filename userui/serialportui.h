@@ -10,6 +10,11 @@ class SerialPortUi;
 class SerialPortUi : public QDialog
 {
     Q_OBJECT
+private:
+    void initData();
+    void initUI();
+    void initThread();
+    void initConnect();
 
 public:
     explicit SerialPortUi(QWidget *parent = 0);

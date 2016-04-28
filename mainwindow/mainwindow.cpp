@@ -1,4 +1,4 @@
-/****************************************************************************
+﻿/****************************************************************************
 **
 ** Copyright (C) 2016 pkzju
 **
@@ -13,6 +13,7 @@
 #include "thememenu.h"
 #include "functionpages/rightfloatwindow.h"
 #include <qdebug.h>
+
 
 MainWindow* MainWindow::instance = 0;
 
@@ -49,6 +50,16 @@ void MainWindow::initUI()
     QGridLayout *gdLayout = new QGridLayout();
     rightfloatWindow->setLayout(gdLayout);
 
+    LampOfStatusBar =new QcwIndicatorLamp;
+    LampOfStatusBar->setFixedSize(20,20);
+    LampOfStatusBar->setLampState(LampState::lamp_grey);
+    LabelOfStatusBar = new QLabel(QStringLiteral("端口未打开"));
+    RxLabelOfStatusBar = new QLabel(QStringLiteral("接收:00000"));
+    TxLabelOfStatusBar = new QLabel(QStringLiteral("发送:00000"));
+    getStatusBar()->addWidget(LampOfStatusBar);
+    getStatusBar()->addWidget(LabelOfStatusBar);
+    getStatusBar()->addWidget(RxLabelOfStatusBar);
+    getStatusBar()->addWidget(TxLabelOfStatusBar);
 
 }
 

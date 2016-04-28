@@ -60,7 +60,7 @@ void FMainWindow::initUI()
     setWindowFlags(Qt::FramelessWindowHint);
     setWindowTitle("Console");
 
-    pstatusbar->setFixedHeight(25);
+    pstatusbar->setFixedHeight(30);
     setStatusBar(pstatusbar);
 
     trayicon->setObjectName(QString("trayicon"));

@@ -31,6 +31,7 @@
 #include <QResizeEvent>
 #include <QMouseEvent>
 #include <QHideEvent>
+#include "lamp/qcw_indicatorlamp.h"
 
 
 
@@ -56,6 +57,10 @@ private:
     SettingMenu* settingMenu;
     ThemeMenu* themeMenu;
     RightFloatWindow* rightfloatWindow;
+    QcwIndicatorLamp *LampOfStatusBar;
+    QLabel *LabelOfStatusBar;
+    QLabel *RxLabelOfStatusBar;
+    QLabel *TxLabelOfStatusBar;
 
 public:
     explicit MainWindow(QWidget *parent = 0);

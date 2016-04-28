@@ -57,7 +57,9 @@ SOURCES += \
     main.cpp \
     functionpages/qssbuilder.cpp \
     lamp/qcw_indicatorlamp.cpp \
-    thread/canthread.cpp
+    thread/canthread.cpp \
+    thread/serialportthread.cpp \
+    parser/protocal.cpp
 
 # header
 HEADERS  += \
@@ -72,7 +74,9 @@ HEADERS  += \
     mainwindow/thememenu.h \
     functionpages/qssbuilder.h \
     lamp/qcw_indicatorlamp.h \
-    thread/canthread.h
+    thread/canthread.h \
+    thread/serialportthread.h \
+    parser/protocal.h
 
 # resources
 RESOURCES += \
