@@ -2,7 +2,6 @@
 #define SERIALPORTTHREAD_H
 #include <QThread>
 #include <QMutex>
-#include <QtSerialPort/QSerialPort>
 #include "userui/serialportsettingsdialog.h"
 
 class SerialPortThread : public QThread
@@ -27,10 +26,10 @@ private:
     QMutex m_serialPortMutex;
     bool m_isStopped;
     bool m_isSettingsChanged;
-    QSerialPort serial;
+
     SerialPortSettingsDialog::Settings m_currentSettings;
     QByteArray m_dataToSend;
-    QByteArray m_dataReceived;
+
 
 };
 

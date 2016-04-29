@@ -44,7 +44,7 @@ void CenterWindow::initUI()
     FTabWidget *Com = new FTabWidget;
     Com->addWidget(QStringLiteral("CAN"),"canBtn",canUi);
     Com->addWidget(QStringLiteral("串口"),"serialportBtn",serialportsettingsdialog);
- //   addWidget(QStringLiteral("主页"), "Home", canUi);
+    addWidget(QStringLiteral("主页"), "Home", canUi);
     addWidget(QStringLiteral("曲线"), "MathPlot", plotUi);
     addWidget(QStringLiteral("通信端口"),"Communication", Com);
 

@@ -3,6 +3,9 @@
 
 #include <QDialog>
 
+#include "thread/serialportthread.h"
+
+
 namespace Ui {
 class SerialPortUi;
 }
@@ -20,19 +23,15 @@ public:
     explicit SerialPortUi(QWidget *parent = 0);
     ~SerialPortUi();
 
+
 private slots:
-    void on_pushButton_Open_clicked();
 
-    void on_pushButton_Close_clicked();
-
-    void on_pushButton_Clear_clicked();
-
-    void on_pushButton_Send_clicked();
-
-    void radioButton_CRC_clicked();
+    void radioButton_clicked();
+    void messageShow(const QString &s);
 
 private:
     Ui::SerialPortUi *ui;
+    SerialPortThread *mySerialPortThread;
 };
 
 #endif // SERIALPORTUI_H

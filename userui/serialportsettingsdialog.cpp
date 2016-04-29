@@ -10,6 +10,9 @@
 #include <QIntValidator>
 #include <QLineEdit>
 
+
+#include "thread/serialportthread.h"
+
 QT_USE_NAMESPACE
 
 static const char blankString[] = QT_TRANSLATE_NOOP("SerialPortSettingsDialog", "N/A");
@@ -24,10 +27,10 @@ SerialPortSettingsDialog::SerialPortSettingsDialog(QWidget *parent) :
 
     intValidator = new QIntValidator(0, 4000000, this);
 
+//    mySerialPortThread = SerialPortThread::getInstance();
+
     ui->baudRateBox->setInsertPolicy(QComboBox::NoInsert);
 
-    connect(ui->applyButton, SIGNAL(clicked()),
-            this, SLOT(apply()));
     connect(ui->serialPortInfoListBox, SIGNAL(currentIndexChanged(int)),
             this, SLOT(showPortInfo(int)));
     connect(ui->baudRateBox, SIGNAL(currentIndexChanged(int)),
@@ -203,4 +206,18 @@ void SerialPortSettingsDialog::updateSettings()
 void SerialPortSettingsDialog::on_searchButton_clicked()
 {
     fillPortsInfo();
+}
+
+void SerialPortSettingsDialog::on_Button_Close_clicked()
+{
+    SerialPortThread *mySerialPortThread = SerialPortThread::getInstance();
+    mySerialPortThread->mStop();
+}
+
+void SerialPortSettingsDialog::on_Button_Open_clicked()
+{
+    updateSettings();
+    SerialPortThread *mySerialPortThread = SerialPortThread::getInstance();
+    mySerialPortThread->mStart(currentSettings);
+
 }

@@ -36,10 +36,10 @@ typedef struct
 {
     unsigned char     flag;
     unsigned char     length;
-    unsigned char     seq_num:1;
-    unsigned char     type:3;
-    unsigned char     id:2;
-    unsigned char     cmd:2;
+    unsigned char     seq_num;
+    unsigned char     type:4;
+    unsigned char     id:4;
+    unsigned char     cmd;
     unsigned char     crc8;
 }tHeader;      //common header
 #pragma pack(pop)

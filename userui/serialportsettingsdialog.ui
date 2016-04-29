@@ -6,9 +6,15 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>349</width>
-    <height>494</height>
+    <width>250</width>
+    <height>450</height>
    </rect>
+  </property>
+  <property name="sizePolicy">
+   <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
+    <horstretch>0</horstretch>
+    <verstretch>0</verstretch>
+   </sizepolicy>
   </property>
   <property name="windowTitle">
    <string>Form</string>
@@ -68,9 +74,15 @@ QGroupBox::title {
 }
 </string>
   </property>
-  <layout class="QVBoxLayout" name="verticalLayout_2">
-   <item>
+  <layout class="QGridLayout" name="gridLayout_6">
+   <item row="0" column="0" colspan="3">
     <widget class="QGroupBox" name="selectBox">
+     <property name="sizePolicy">
+      <sizepolicy hsizetype="Preferred" vsizetype="Fixed">
+       <horstretch>0</horstretch>
+       <verstretch>0</verstretch>
+      </sizepolicy>
+     </property>
      <property name="title">
       <string>选择串口</string>
      </property>
@@ -103,6 +115,12 @@ QGroupBox::title {
       </item>
       <item row="0" column="2">
        <widget class="QPushButton" name="searchButton">
+        <property name="sizePolicy">
+         <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
+          <horstretch>0</horstretch>
+          <verstretch>0</verstretch>
+         </sizepolicy>
+        </property>
         <property name="minimumSize">
          <size>
           <width>75</width>
@@ -117,42 +135,42 @@ QGroupBox::title {
         </property>
        </widget>
       </item>
-      <item row="1" column="0">
+      <item row="1" column="0" colspan="3">
        <widget class="QLabel" name="descriptionLabel">
         <property name="text">
          <string>Description:</string>
         </property>
        </widget>
       </item>
-      <item row="2" column="0">
+      <item row="2" column="0" colspan="3">
        <widget class="QLabel" name="manufacturerLabel">
         <property name="text">
          <string>Manufacturer:</string>
         </property>
        </widget>
       </item>
-      <item row="3" column="0">
+      <item row="3" column="0" colspan="3">
        <widget class="QLabel" name="serialNumberLabel">
         <property name="text">
          <string>Serial number:</string>
         </property>
        </widget>
       </item>
-      <item row="4" column="0">
+      <item row="4" column="0" colspan="3">
        <widget class="QLabel" name="locationLabel">
         <property name="text">
          <string>Location:</string>
         </property>
        </widget>
       </item>
-      <item row="5" column="0">
+      <item row="5" column="0" colspan="3">
        <widget class="QLabel" name="vidLabel">
         <property name="text">
          <string>Vendor ID:</string>
         </property>
        </widget>
       </item>
-      <item row="6" column="0">
+      <item row="6" column="0" colspan="3">
        <widget class="QLabel" name="pidLabel">
         <property name="text">
          <string>Product ID:</string>
@@ -162,8 +180,14 @@ QGroupBox::title {
      </layout>
     </widget>
    </item>
-   <item>
+   <item row="1" column="0" colspan="3">
     <widget class="QGroupBox" name="parametersBox">
+     <property name="sizePolicy">
+      <sizepolicy hsizetype="Preferred" vsizetype="Fixed">
+       <horstretch>0</horstretch>
+       <verstretch>0</verstretch>
+      </sizepolicy>
+     </property>
      <property name="title">
       <string>选择参数</string>
      </property>
@@ -256,35 +280,56 @@ QGroupBox::title {
      </layout>
     </widget>
    </item>
-   <item>
-    <layout class="QHBoxLayout" name="horizontalLayout">
-     <item>
-      <spacer name="horizontalSpacer">
-       <property name="orientation">
-        <enum>Qt::Horizontal</enum>
-       </property>
-       <property name="sizeHint" stdset="0">
-        <size>
-         <width>96</width>
-         <height>20</height>
-        </size>
-       </property>
-      </spacer>
-     </item>
-     <item>
-      <widget class="QPushButton" name="applyButton">
-       <property name="minimumSize">
-        <size>
-         <width>75</width>
-         <height>38</height>
-        </size>
-       </property>
-       <property name="text">
-        <string>  Apply  </string>
-       </property>
-      </widget>
-     </item>
-    </layout>
+   <item row="2" column="0">
+    <widget class="QPushButton" name="Button_Close">
+     <property name="sizePolicy">
+      <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
+       <horstretch>0</horstretch>
+       <verstretch>0</verstretch>
+      </sizepolicy>
+     </property>
+     <property name="minimumSize">
+      <size>
+       <width>75</width>
+       <height>38</height>
+      </size>
+     </property>
+     <property name="text">
+      <string>关闭</string>
+     </property>
+    </widget>
+   </item>
+   <item row="2" column="1">
+    <spacer name="horizontalSpacer">
+     <property name="orientation">
+      <enum>Qt::Horizontal</enum>
+     </property>
+     <property name="sizeHint" stdset="0">
+      <size>
+       <width>67</width>
+       <height>20</height>
+      </size>
+     </property>
+    </spacer>
+   </item>
+   <item row="2" column="2">
+    <widget class="QPushButton" name="Button_Open">
+     <property name="sizePolicy">
+      <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
+       <horstretch>0</horstretch>
+       <verstretch>0</verstretch>
+      </sizepolicy>
+     </property>
+     <property name="minimumSize">
+      <size>
+       <width>75</width>
+       <height>38</height>
+      </size>
+     </property>
+     <property name="text">
+      <string>打开</string>
+     </property>
+    </widget>
    </item>
   </layout>
  </widget>

@@ -1,6 +1,7 @@
 #include "serialportthread.h"
 #include "qdebug.h"
 #include "parser/protocal.h"
+#include <QtSerialPort/QSerialPort>
 
 SerialPortThread *SerialPortThread::s_instance = NULL;
 
@@ -74,14 +75,20 @@ void SerialPortThread::run()
 
     SerialPortSettingsDialog::Settings __mSettings;
     bool __isSettingsChanged = false;
+    QByteArray __dataReceived;
     QByteArray __dataToSend;
     unsigned char rx_buffer[256];
+    QSerialPort serial;
     while(!__isStopped)
     {
         m_serialPortMutex.lock();
-        __isSettingsChanged = m_isSettingsChanged;
+        if(m_isSettingsChanged){
+            m_isSettingsChanged =false;
+            __isSettingsChanged = true;
+        }
         m_serialPortMutex.unlock();
         if(__isSettingsChanged){
+            __isSettingsChanged =false;
             if(serial.isOpen()){
                 serial.close();
             }
@@ -132,16 +139,18 @@ void SerialPortThread::run()
         }
 
         if (serial.waitForReadyRead(100)) {
-            m_dataReceived = serial.readAll();
+            __dataReceived = serial.readAll();
             while (serial.waitForReadyRead(10))
-                m_dataReceived += serial.readAll();
+                __dataReceived += serial.readAll();
         }
         //unpack the data received
-        if(m_dataReceived.size() > 0){
+        if(__dataReceived.size() > 0){
 
-            for(int i = 0; i < m_dataReceived.size(); i ++){
+            emit message(__dataReceived.toHex());
 
-                if(FrameUnpack(m_dataReceived.at(i),rx_buffer)){
+            for(int i = 0; i < __dataReceived.size(); i ++){
+
+                if(FrameUnpack(__dataReceived.at(i),rx_buffer)){
 
                     tHeader* pHeader = (tHeader*)rx_buffer;
                     if( pHeader->cmd  == CMD_ID_SENSOR_INFO){

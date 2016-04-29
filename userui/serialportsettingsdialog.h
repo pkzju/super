@@ -9,6 +9,7 @@
 #include <QDialog>
 #include <QtSerialPort/QSerialPort>
 
+
 QT_USE_NAMESPACE
 
 QT_BEGIN_NAMESPACE
@@ -55,6 +56,10 @@ private slots:
 
     void on_searchButton_clicked();
 
+    void on_Button_Close_clicked();
+
+    void on_Button_Open_clicked();
+
 signals:
     void emitApply(int idx);
 
@@ -66,8 +71,9 @@ private:
 private:
     Ui::SerialPortSettingsDialog *ui;
     Settings currentSettings;
-    QIntValidator *intValidator;
     static SerialPortSettingsDialog *instance;
+    QIntValidator *intValidator;
+//    SerialPortThread *mySerialPortThread;
 };
 
 #endif // SETTINGSDIALOG_H
