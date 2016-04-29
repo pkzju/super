@@ -103,7 +103,7 @@ INCLUDEPATH +=$$PWD/qwt
 CONFIG(debug, debug|release) {
 win32:LIBS += -L$$PWD/lib -lqwtd
 #win32:QMAKE_POST_LINK = copy /Y ($$PWD/lib/qwtd.dll) $(DESTDIR)
-win32:QMAKE_POST_LINK = copy /Y D:\Qt\qwt-6.1.2\lib\qwt.dll $(DESTDIR)
+win32:QMAKE_POST_LINK = copy /Y C:\qwt-6.1.2\lib\qwt.dll $(DESTDIR)
 }else {
 win32:LIBS += -L$$PWD/lib -lqwt
 win32:QMAKE_POST_LINK = copy /Y $$PWD\lib\qwt.dll $(DESTDIR)
