@@ -26,6 +26,7 @@
 #include "userui/canui.h"
 #include "userui/serialportui.h"
 #include "userui/mplotui.h"
+#include "userui/modbusui.h"
 #include "QFramer/ftabwidget.h"
 
 CenterWindow::CenterWindow(QWidget *parent) :
@@ -42,11 +43,12 @@ void CenterWindow::initUI()
     SerialPortUi *serialportsettingsdialog = new SerialPortUi;
     MPlotUi *plotUi = new MPlotUi;
     FTabWidget *Com = new FTabWidget;
+    ModbusUi *modbusui = new ModbusUi;
     Com->addWidget(QStringLiteral("CAN"),"canBtn",canUi);
     Com->addWidget(QStringLiteral("串口"),"serialportBtn",serialportsettingsdialog);
-    addWidget(QStringLiteral("主页"), "Home", canUi);
-    addWidget(QStringLiteral("曲线"), "MathPlot", plotUi);
-    addWidget(QStringLiteral("通信端口"),"Communication", Com);
+    addWidget(QStringLiteral("Home"), "Home", canUi);
+    addWidget(QStringLiteral("Scope"), "MathPlot", plotUi);
+    addWidget(QStringLiteral("Modbus"),"Communication", modbusui);
 
     setAlignment(TopCenter);
 }

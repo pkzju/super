@@ -17,6 +17,7 @@
         <file>skin/icons/dark/appbar.monitor.to.png</file>
         <file>skin/icons/dark/appbar.connect.png</file>
         <file>skin/icons/light/appbar.connect.png</file>
+        <file>skin/icons/dark/appbar.transit.bus.png</file>
     </qresource>
     <qresource prefix="/images">
         <file>skin/images/downsolidarrow.png</file>

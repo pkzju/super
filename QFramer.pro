@@ -11,7 +11,8 @@ greaterThan(QT_MAJOR_VERSION, 4) {
 } else {
     include($$QTSERIALPORT_PROJECT_ROOT/src/serialport/qt4support/serialport.prf)
 }
-QT += widgets webkit webkitwidgets
+QT += serialbus widgets
+CONFIG += c++11
 # application name
 TARGET = Console
 
@@ -97,14 +98,14 @@ qtHaveModule(QWebView): QT += QWebView
 
 FORMS +=
 
-LIBS += -LC:\Users\pengkang\Desktop\QFramer-my\lib -lControlCAN
+LIBS += -L$$PWD\lib\ -lControlCAN
 
 INCLUDEPATH +=$$PWD/qwt
 CONFIG(debug, debug|release) {
 win32:LIBS += -L$$PWD/lib -lqwtd
 #win32:QMAKE_POST_LINK = copy /Y ($$PWD/lib/qwtd.dll) $(DESTDIR)
-win32:QMAKE_POST_LINK = copy /Y C:\qwt-6.1.2\lib\qwt.dll $(DESTDIR)
+#win32:QMAKE_POST_LINK = copy /Y D:\Qt\qwt-6.1.2\lib\qwt.dll $(DESTDIR)
 }else {
 win32:LIBS += -L$$PWD/lib -lqwt
-win32:QMAKE_POST_LINK = copy /Y $$PWD\lib\qwt.dll $(DESTDIR)
+#win32:QMAKE_POST_LINK = copy /Y $$PWD\lib\qwt.dll $(DESTDIR)
 }

@@ -60,7 +60,7 @@ QFrame QLabel#FTitleLabel{
     color: white;
     /*font-family: 'Verdana';*/
     background-color: transparent;
-    font-size: 12px;
+    font-size: 15px;
     padding-left: 5px;
 }
 
@@ -184,7 +184,7 @@ QPushButton#checkable:disabled{
 }
 
 QPushButton#Home{
-    background-image: url(:/skin/icons/dark/appbar.monitor.to.png);
+    background-image: url(:/skin/icons/dark/appbar.home.png);
     background-repeat:no-repeat;
     background-position: center bottom;
     background-color: transparent;
@@ -194,6 +194,8 @@ QPushButton#Home{
     color: white;
     text-align: center bottom;
     padding-bottom: 2px;
+	font-size:18px;
+	font-weight: bold;
 }
 
 QPushButton#Home:hover{
@@ -214,6 +216,7 @@ QPushButton#Home:flat{
 
 QPushButton#MathPlot{
     background-image: url(:/skin/icons/dark/appbar.graph.line.png);
+	/*border-image: url(:/skin/icons/dark/scope.png);*/
     background-repeat:no-repeat;
     background-position: center bottom;
     background-color: transparent;
@@ -223,6 +226,8 @@ QPushButton#MathPlot{
     color: white;
     text-align: center bottom;
     padding-bottom: 2px;
+	font-size:18px;
+	font-weight: bold;
 }
 
 QPushButton#MathPlot:hover{
@@ -242,7 +247,7 @@ QPushButton#MathPlot:flat{
 }
 
 QPushButton#Communication{
-    background-image: url(:/skin/icons/dark/appbar.connect.png);
+    background-image: url(:/skin/icons/dark/appbar.transit.bus.png);/*:/skin/icons/dark/appbar.connect.png*/
     background-repeat:no-repeat;
     background-position: center bottom;
     background-color: transparent;
@@ -252,6 +257,8 @@ QPushButton#Communication{
     color: white;
     text-align: center bottom;
     padding-bottom: 2px;
+	font-size:18px;
+	font-weight: bold;
 }
 
 QPushButton#Communication:hover{
@@ -605,7 +612,7 @@ QDialog QFrame#TitleBar{
 }
 QDialog QLabel#FTitleLabel{
     color: white;
-    font-size: 12px;
+    font-size: 15px;
     padding-left: 5px;
 }
 
