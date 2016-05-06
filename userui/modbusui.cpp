@@ -42,7 +42,8 @@ ModbusUi::ModbusUi(QWidget *parent) :
     ROW_COUNT = writeModel->rowCount();
 
     ui->writeValueTable->setModel(writeModel);
-    ui->writeValueTable->hideColumn(2);
+    ui->writeValueTable->hideColumn(1);
+
     connect(writeModel, &WriteRegisterModel::updateViewport, ui->writeValueTable->viewport(),
         static_cast<void (QWidget::*)()>(&QWidget::update));
 
@@ -51,6 +52,7 @@ ModbusUi::ModbusUi(QWidget *parent) :
     ui->writeTable->addItem(tr("Discrete Inputs"), QModbusDataUnit::DiscreteInputs);
     ui->writeTable->addItem(tr("Input Registers"), QModbusDataUnit::InputRegisters);
     ui->writeTable->addItem(tr("Holding Registers"), QModbusDataUnit::HoldingRegisters);
+    ui->writeTable->setCurrentIndex(3);
 
     ui->connectType->setCurrentIndex(0);
     on_connectType_currentIndexChanged(0);
@@ -73,21 +75,6 @@ ModbusUi::ModbusUi(QWidget *parent) :
 
     auto valueChanged = static_cast<void (QSpinBox::*)(int)> (&QSpinBox::valueChanged);
     connect(ui->writeAddress, valueChanged, writeModel, &WriteRegisterModel::setStartAddress);
-    connect(ui->writeAddress, valueChanged, this, [this, model](int i) {
-        int lastPossibleIndex = 0;
-        const int currentIndex = ui->writeSize->currentIndex();
-        for (int ii = 0; ii < ROW_COUNT; ++ii) {
-            if (ii < (ROW_COUNT - i)) {
-                lastPossibleIndex = ii;
-                model->item(ii)->setEnabled(true);
-            } else {
-                model->item(ii)->setEnabled(false);
-            }
-        }
-        if (currentIndex > lastPossibleIndex)
-            ui->writeSize->setCurrentIndex(lastPossibleIndex);
-    });
-
 
 }
 

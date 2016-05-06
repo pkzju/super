@@ -1,5 +1,6 @@
 #include "canui.h"
 #include "ui_canui.h"
+#include<qlibrary.h>
 
 
 CANUi *CANUi::s_Instance = 0;

@@ -1,17 +1,15 @@
 #-------------------------------------------------
 #
-# Project created by QtCreator 2014-07-23T11:28:16
+# Project created by QtCreator 2016-04-23T11:28:16
 #
 #-------------------------------------------------
 
 QT       += core gui printsupport
-greaterThan(QT_MAJOR_VERSION, 4): QT += widgets
 greaterThan(QT_MAJOR_VERSION, 4) {
-    QT       += widgets serialport
+    QT       += widgets serialport serialbus
 } else {
     include($$QTSERIALPORT_PROJECT_ROOT/src/serialport/qt4support/serialport.prf)
 }
-QT += serialbus widgets
 CONFIG += c++11
 # application name
 TARGET = Console
@@ -20,7 +18,7 @@ TARGET = Console
 TEMPLATE = app
 
 DEPENDPATH += .
-INCLUDEPATH += .
+INCLUDEPATH += $$PWD/qwt
 
 include(./QFramer/QFramer.pri)
 include(./canOpen/canopen.pri)
@@ -98,14 +96,10 @@ qtHaveModule(QWebView): QT += QWebView
 
 FORMS +=
 
-LIBS += -L$$PWD\lib\ -lControlCAN
+win32:LIBS += -L$$PWD\lib\ -lControlCAN
 
-INCLUDEPATH +=$$PWD/qwt
 CONFIG(debug, debug|release) {
 win32:LIBS += -L$$PWD/lib -lqwtd
-#win32:QMAKE_POST_LINK = copy /Y ($$PWD/lib/qwtd.dll) $(DESTDIR)
-#win32:QMAKE_POST_LINK = copy /Y D:\Qt\qwt-6.1.2\lib\qwt.dll $(DESTDIR)
 }else {
 win32:LIBS += -L$$PWD/lib -lqwt
-#win32:QMAKE_POST_LINK = copy /Y $$PWD\lib\qwt.dll $(DESTDIR)
 }

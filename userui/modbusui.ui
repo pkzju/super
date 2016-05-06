@@ -608,8 +608,14 @@ QPushButton:disabled{
               <height>25</height>
              </size>
             </property>
+            <property name="prefix">
+             <string>0x</string>
+            </property>
             <property name="maximum">
-             <number>127</number>
+             <number>65535</number>
+            </property>
+            <property name="displayIntegerBase">
+             <number>16</number>
             </property>
            </widget>
           </item>
@@ -829,7 +835,19 @@ QPushButton:disabled{
            <bool>false</bool>
           </property>
           <attribute name="headerVisible">
+           <bool>true</bool>
+          </attribute>
+          <attribute name="headerCascadingSectionResizes">
            <bool>false</bool>
+          </attribute>
+          <attribute name="headerDefaultSectionSize">
+           <number>100</number>
+          </attribute>
+          <attribute name="headerMinimumSectionSize">
+           <number>100</number>
+          </attribute>
+          <attribute name="headerShowSortIndicator" stdset="0">
+           <bool>true</bool>
           </attribute>
          </widget>
         </item>

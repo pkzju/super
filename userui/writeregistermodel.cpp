@@ -39,8 +39,9 @@
 ****************************************************************************/
 
 #include "writeregistermodel.h"
+#include <qdebug.h>
 
-#define ROW_COUNT 20
+#define ROW_COUNT 30
 #define COLUMN_COUNT 3
 
 #define COLUMN_NUM 0
@@ -51,6 +52,7 @@ WriteRegisterModel::WriteRegisterModel(QObject *parent)
     : QAbstractTableModel(parent),
       m_coils(ROW_COUNT, false), m_holdingRegisters(ROW_COUNT, 0u)
 {
+
 }
 
 int WriteRegisterModel::rowCount(const QModelIndex &/*parent*/) const
@@ -72,7 +74,7 @@ QVariant WriteRegisterModel::data(const QModelIndex &index, int role) const
     Q_ASSERT(m_holdingRegisters.count() == ROW_COUNT);
 
     if (index.column() == COLUMN_NUM && role == Qt::DisplayRole)
-        return QString::number(index.row());
+        return QString("0x%1").arg(QString::number((index.row()+m_address), 16));
 
     if (index.column() == COLUMN_COILS && role == Qt::CheckStateRole) // coils
         return m_coils.at(index.row()) ? Qt::Checked : Qt::Unchecked;
@@ -92,7 +94,7 @@ QVariant WriteRegisterModel::headerData(int section, Qt::Orientation orientation
     if (orientation == Qt::Horizontal) {
         switch (section) {
         case COLUMN_NUM:
-            return QStringLiteral("#");
+            return QStringLiteral("Address");
         case COLUMN_COILS:
             return QStringLiteral("Coils  ");
         case COLUMN_HOLDING:
@@ -112,6 +114,7 @@ bool WriteRegisterModel::setData(const QModelIndex &index, const QVariant &value
     Q_ASSERT(m_coils.count() == ROW_COUNT);
     Q_ASSERT(m_holdingRegisters.count() == ROW_COUNT);
 
+
     if (index.column() == COLUMN_COILS && role == Qt::CheckStateRole) { // coils
         Qt::CheckState s = static_cast<Qt::CheckState>(value.toUInt());
         s == Qt::Checked ? m_coils.setBit(index.row()) : m_coils.clearBit(index.row());
@@ -129,6 +132,7 @@ bool WriteRegisterModel::setData(const QModelIndex &index, const QVariant &value
         return result;
     }
 
+
     return false;
 }
 
@@ -138,7 +142,7 @@ Qt::ItemFlags WriteRegisterModel::flags(const QModelIndex &index) const
         return QAbstractTableModel::flags(index);
 
     Qt::ItemFlags flags = QAbstractTableModel::flags(index);
-    if ((index.row() < m_address) || (index.row() >= (m_address + m_number)))
+    if (index.row() >= m_number)
         flags &= ~Qt::ItemIsEnabled;
 
     if (index.column() == COLUMN_COILS) //coils
