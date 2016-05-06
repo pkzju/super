@@ -61,6 +61,8 @@ private:
     QLabel *LabelOfStatusBar;
     QLabel *RxLabelOfStatusBar;
     QLabel *TxLabelOfStatusBar;
+    QToolButton *OpenOfStatusBar;
+    QToolButton *CloseOfStatusBar;
 
 public:
     explicit MainWindow(QWidget *parent = 0);

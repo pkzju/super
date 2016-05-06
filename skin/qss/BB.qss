@@ -333,11 +333,14 @@ QStatusBar {
 	background-color: qlineargradient(spread:pad, x1:0, y1:0, x2:1 y2:0, stop:0 rgba(8, 148, 241, 255), stop:1 rgba(14, 142, 231, 255));
     border-top: 1px solid rgb(6, 150, 245);
 }
+QStatusBar:item{
+	border:0px;
+}
 
 QStatusBar QLabel{
     background-color: transparent;
     font: 16px;
-    color: black;
+    color: white;
 }
 
 QSizeGrip {   
