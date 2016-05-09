@@ -75,7 +75,8 @@ HEADERS  += \
     lamp/qcw_indicatorlamp.h \
     thread/canthread.h \
     thread/serialportthread.h \
-    parser/protocal.h
+    parser/protocal.h \
+    qmotor/qmotor.h
 
 # resources
 RESOURCES += \
@@ -103,3 +104,5 @@ win32:LIBS += -L$$PWD/lib -lqwtd
 }else {
 win32:LIBS += -L$$PWD/lib -lqwt
 }
+
+DISTFILES +=

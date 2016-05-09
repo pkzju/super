@@ -10,6 +10,7 @@
 #include <QtSerialPort/QSerialPortInfo>
 #include <QIntValidator>
 
+
 #include <QDebug>
 
 enum ModbusConnection {
@@ -43,6 +44,7 @@ ModbusUi::ModbusUi(QWidget *parent) :
 
     ui->writeValueTable->setModel(writeModel);
     ui->writeValueTable->hideColumn(1);
+//    writeModel->setData(writeModel->index(2,2), QString::number(0xff), Qt::EditRole);
 
     connect(writeModel, &WriteRegisterModel::updateViewport, ui->writeValueTable->viewport(),
         static_cast<void (QWidget::*)()>(&QWidget::update));

@@ -4,7 +4,8 @@ FORMS += \
     $$PWD/serialportsettingsdialog.ui \
     $$PWD/mplotui.ui \
     $$PWD/homewindow.ui \
-    $$PWD/modbusui.ui
+    $$PWD/modbusui.ui \
+    $$PWD/fanmotorui.ui
 
 
 HEADERS += \
@@ -14,7 +15,9 @@ HEADERS += \
     $$PWD/mplotui.h \
     $$PWD/homewindow.h \
     $$PWD/modbusui.h \
-    $$PWD/writeregistermodel.h
+    $$PWD/writeregistermodel.h \
+    $$PWD/fanmotorui.h \
+    $$PWD/settingmodel.h
 
 
 SOURCES += \
@@ -24,5 +27,7 @@ SOURCES += \
     $$PWD/mplotui.cpp \
     $$PWD/homewindow.cpp \
     $$PWD/modbusui.cpp \
-    $$PWD/writeregistermodel.cpp
+    $$PWD/writeregistermodel.cpp \
+    $$PWD/fanmotorui.cpp \
+    $$PWD/settingmodel.cpp
 

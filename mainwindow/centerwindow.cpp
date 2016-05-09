@@ -28,6 +28,7 @@
 #include "userui/mplotui.h"
 #include "userui/modbusui.h"
 #include "QFramer/ftabwidget.h"
+#include "userui/fanmotorui.h"
 
 CenterWindow::CenterWindow(QWidget *parent) :
     FCenterWindow(parent)
@@ -44,9 +45,10 @@ void CenterWindow::initUI()
     MPlotUi *plotUi = new MPlotUi;
     FTabWidget *Com = new FTabWidget;
     ModbusUi *modbusui = new ModbusUi;
+    FanMotorUi *fanmotorui = new FanMotorUi;
     Com->addWidget(QStringLiteral("CAN"),"canBtn",canUi);
     Com->addWidget(QStringLiteral("串口"),"serialportBtn",serialportsettingsdialog);
-    addWidget(QStringLiteral("Home"), "Home", canUi);
+    addWidget(QStringLiteral("Home"), "Home", fanmotorui);
     addWidget(QStringLiteral("Scope"), "MathPlot", plotUi);
     addWidget(QStringLiteral("Modbus"),"Communication", modbusui);
 

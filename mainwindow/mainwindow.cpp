@@ -72,6 +72,9 @@ void MainWindow::initUI()
     getStatusBar()->addPermanentWidget(OpenOfStatusBar);//at the right
     getStatusBar()->addPermanentWidget(CloseOfStatusBar);
 
+    connect(OpenOfStatusBar, SIGNAL(clicked()), this, SIGNAL(connectButtonsClicked()));
+    connect(CloseOfStatusBar, SIGNAL(clicked()), this, SIGNAL(disconnectButtonsClicked()));
+
 }
 
 void MainWindow::initThread()

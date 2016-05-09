@@ -29,6 +29,9 @@
         <file>skin/images/clear.png</file>
         <file>skin/images/connect.png</file>
         <file>skin/images/disconnect.png</file>
+        <file>skin/icons/led_off.png</file>
+        <file>skin/icons/led_on.png</file>
+        <file>skin/icons/led_warning.png</file>
     </qresource>
     <qresource prefix="/qss">
         <file>skin/qss/BB.qss</file>

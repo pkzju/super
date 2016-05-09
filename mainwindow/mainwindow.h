@@ -64,11 +64,19 @@ private:
     QToolButton *OpenOfStatusBar;
     QToolButton *CloseOfStatusBar;
 
+signals:
+    void connectButtonsClicked();
+    void disconnectButtonsClicked();
+
 public:
     explicit MainWindow(QWidget *parent = 0);
     static MainWindow* getInstance();
     RightFloatWindow* getRightFloatWindow();
     SettingMenu* getSettingMenu();
+    void setStatusBarLamp(bool isOpen);
+    void setStatusBarMessage(QString s);
+    void setRxNumber(qint64 num);
+    void setTxNumber(qint64 num);
 
 
 signals:

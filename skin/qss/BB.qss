@@ -351,17 +351,15 @@ QSizeGrip {
 
 /* ******************QGroupBox****************** */
 QGroupBox {
-	border: 0.5px solid rgba(12, 112, 208, 255);
-    margin-top: 5px;  /*leave space at the top for the title */
+/*	border: 0.5px solid rgba(12, 112, 208, 255);*/
+    margin-top: 5px; 
 	padding-top: 8px;
 	font-size: 16px;
 }
 
 QGroupBox::title {
     subcontrol-origin: margin;
-	/* position at the top center */
     subcontrol-position: top left; 
-    /*padding: 5px 5px;*/
     font-size: 16px;
     font-weight:  bold;
     color:rgb(60, 104, 137);
@@ -499,20 +497,6 @@ QHeaderView::section {
 /* ******************QHeaderView****************** */
 
 
-/* ******************QTableWidget****************** */
-QTableWidget{
-    /*border: 1px solid #485260;*/
-    border: none;
-    color: white;
-    background-color: rgb(27, 118, 150);
-    selection-color: white;
-    selection-background-color:rgb(62, 165, 250);
-}
-
-QTableWidget:disabled{
-    border: none;
-    background-color: gray;
-}
 /* ******************QTableWidget****************** */
 
 /* ******************QScrollBar****************** */
