@@ -1,4 +1,4 @@
-#ifndef QMOTOR_H
+﻿#ifndef QMOTOR_H
 #define QMOTOR_H
 
 typedef signed char qint8;         // 8 bit signed
@@ -9,16 +9,27 @@ typedef int qint32;                // 32 bit signed
 typedef unsigned int quint32;      // 32 bit unsigned
 
 
-/********************
- *
- *******************/
-#pragma pack(push)
-#pragma pack(1)
-struct QPIParameters{
-    float  m_kp;
-    float  m_ki;
+enum class QMotorError : char{
+    m_noError = 0,
+    m_overCur,
+    m_overSpd,
+    m_stall,
+    m_lowVolt,
+    m_highVolt
 };
-#pragma pack(pop)
+
+enum class QMotorState : char{
+    m_stop = 0,
+    m_error,
+    m_run,
+    m_stall,   // 堵转状态
+    m_overSpd
+};
+
+enum class QCommunicationState : char{
+    m_disconnect = 0,
+    m_connect,
+};
 
 /********************
  *
@@ -26,7 +37,7 @@ struct QPIParameters{
 #pragma pack(push)
 #pragma pack(1)
 struct QMotorSettings{
-    quint16 m_dryHighPower:16;    //2 byte
+    quint16 m_dryHighPower:16;    //2 byte  address:0x0040
     quint16 m_dryHighSpeed:16;    //4 byte
     quint16 m_wetHighPower:16;    //6 byte
     quint16 m_wetHighSpeed:16;    //8 byte
@@ -39,44 +50,28 @@ struct QMotorSettings{
     quint16 m_dryLowPower:16;     //18 byte
     quint16 m_dryLowSpeed:16;     //20 byte
     quint16 m_wetLowPower:16;     //22 byte
-    quint16 m_wetLowSpeed:16;     //24 byte
+    quint16 m_wetLowSpeed:16;     //24 byte  0x004b
 
     quint16 m_motorType:4;
     quint16 m_staticPressure:2;
     quint16 m_regulation:2;       //25 byte
     quint16 m_control:1;
-    quint16 m_address:7;          //26 byte
-
-    QPIParameters  m_speedPI;     //30 byte
-    QPIParameters  m_idPI;        //34 byte
-    QPIParameters  m_iqPI;        //38 byte
+    quint16 m_address:7;          //26 byte  0x004c
 };
 #pragma pack(pop)
-
-enum class QMotorState{
-    m_stop = 0,
-    m_error,
-    m_run,
-    m_stall,   // 堵转状态
-    m_overSpd
-};
 
 /********************
  *
  *******************/
 #pragma pack(push)
 #pragma pack(1)
-struct QMotorController{
-    quint8 m_poles;           // 电机极性
-    quint16 m_ratedPower;     // 额定功率
-    quint16 m_ratedSpeedRPM;  // 额定转速 in RPM Format
-    quint16 m_speedRPM;       // 实时转速 in RPM Format
-    quint16 m_targetpower;    // 实时目标功率
-    quint16 m_nowpower;       // 实时实际功率
-    qint16 m_speedRpmRef;     // motor speed command value
-    qint32 m_speedfbk;        // speed feedback
-    qint32 m_speedRef; 	      // speed reference set-point
-    QMotorState m_runState;	  // Motor run state
+struct QPIParameters{
+    quint16  m_speedKp;    // x 1000
+    quint16  m_speedKi;    // x 1000
+    quint16  m_idKp;       // x 1000
+    quint16  m_idKi;       // x 1000
+    quint16  m_iqKp;       // x 1000
+    quint16  m_iqKi;       // x 1000
 };
 #pragma pack(pop)
 
@@ -86,14 +81,36 @@ struct QMotorController{
 #pragma pack(push)
 #pragma pack(1)
 struct QPIController{
-    qint32  m_ref;   		// reference set-point
-    qint32  m_fbk;   		// feedback
-    qint32  m_out;   		// Output: controller output
     QPIParameters m_PI;     // PI parameters
-    qint32  m_pOut;			// proportional term
-    qint32  m_iOut;			// integral term
+    qint16  m_ref;   		// reference set-point
+    qint16  m_fbk;   		// feedback
+    qint16  m_out;   		// Output: controller output
 };
 #pragma pack(pop)
+
+/********************
+ *
+ *******************/
+#pragma pack(push)
+#pragma pack(1)
+struct QMotorController{              
+    quint16 m_ratedPower;     // 额定功率    address:0x0060
+    quint16 m_ratedSpeed;     // 额定转速
+
+    quint16 m_targetpower;    // 实时目标功率  address:0x0062
+    quint16 m_nowpower;       // 实时实际功率  address:0x0063
+    qint16 m_speedRef;        //                     0x0064
+    qint16 m_speedFbk;
+    qint16 m_idRef;
+    qint16 m_idFbk;
+    qint16 m_iqRef;
+    qint16 m_iqFbk;
+    QMotorState m_runState;	  // Motor run state
+    QMotorError m_runError;	  // Motor run Error
+
+};
+#pragma pack(pop)
+
 
 
 /********************
@@ -102,11 +119,10 @@ struct QPIController{
 #pragma pack(push)
 #pragma pack(1)
 struct QMotor{
-    QMotorSettings m_initSetttings;
-    QMotorController m_motorController;
-    QPIController m_speedPIController;
-    QPIController m_idPIController;
-    QPIController m_iqPIController;
+    QMotorSettings m_initSetttings;     //0x0040
+    QMotorController m_motorController; //0x0060
+    QPIParameters m_PIPara;             //0x0080
+    QCommunicationState m_communicationState;
 };
 #pragma pack(pop)
 

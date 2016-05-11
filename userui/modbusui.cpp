@@ -18,6 +18,8 @@ enum ModbusConnection {
     Tcp
 };
 
+ModbusUi* ModbusUi::instance = 0;
+
 ModbusUi::ModbusUi(QWidget *parent) :
     QWidget(parent),
     ui(new Ui::ModbusUi),
@@ -119,9 +121,9 @@ void ModbusUi::onStateChanged(int state)
 //    ui->actionDisconnect->setEnabled(connected);
 
     if (state == QModbusDevice::UnconnectedState)
-        ui->connectButton->setText(tr("Connect"));
+        ui->connectButton->setText(tr("   Connect   "));
     else if (state == QModbusDevice::ConnectedState)
-        ui->connectButton->setText(tr("Disconnect"));
+        ui->connectButton->setText(tr("  Disconnect "));
 }
 
 void ModbusUi::on_connectButton_clicked()
@@ -201,6 +203,20 @@ ModbusUi::~ModbusUi()
         modbusDevice->disconnectDevice();
     delete modbusDevice;
     delete ui;
+}
+
+ModbusUi *ModbusUi::getInstance()
+{
+    if(!instance)
+    {
+        instance = new ModbusUi();
+    }
+    return instance;
+}
+
+QModbusClient *ModbusUi::getModbusDevice()
+{
+    return modbusDevice;
 }
 
 void ModbusUi::fillPortsInfo()

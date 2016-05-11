@@ -49,26 +49,26 @@ QPushButton:disabled{
     background-color: gray;
 }</string>
   </property>
-  <layout class="QGridLayout" name="gridLayout_11">
+  <layout class="QGridLayout" name="gridLayout_7">
    <item row="0" column="0">
     <widget class="QGroupBox" name="groupBox_4">
      <property name="minimumSize">
       <size>
        <width>531</width>
-       <height>0</height>
+       <height>242</height>
       </size>
      </property>
      <property name="maximumSize">
       <size>
        <width>531</width>
-       <height>282</height>
+       <height>242</height>
       </size>
      </property>
      <property name="title">
       <string>初始设定</string>
      </property>
      <layout class="QGridLayout" name="gridLayout_2">
-      <item row="0" column="0" colspan="4">
+      <item row="0" column="0">
        <widget class="QTableWidget" name="table_settings">
         <property name="sizePolicy">
          <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
@@ -325,7 +325,7 @@ QPushButton:disabled{
         </item>
        </widget>
       </item>
-      <item row="1" column="0" colspan="4">
+      <item row="1" column="0">
        <layout class="QHBoxLayout" name="horizontalLayout">
         <item>
          <widget class="QLabel" name="label">
@@ -450,297 +450,90 @@ QPushButton:disabled{
         </item>
        </layout>
       </item>
-      <item row="2" column="0" rowspan="2">
-       <layout class="QHBoxLayout" name="horizontalLayout_2">
+      <item row="2" column="0">
+       <layout class="QHBoxLayout" name="horizontalLayout_7">
         <item>
-         <widget class="QGroupBox" name="groupBox">
+         <widget class="QGroupBox" name="groupBox_6">
           <property name="title">
-           <string>Speed</string>
+           <string>写模式</string>
           </property>
-          <layout class="QGridLayout" name="gridLayout">
-           <item row="0" column="0">
-            <widget class="QLabel" name="label_6">
+          <layout class="QHBoxLayout" name="horizontalLayout_3">
+           <item>
+            <widget class="QRadioButton" name="radioButton_signleMode">
              <property name="text">
-              <string>P</string>
+              <string>单机</string>
+             </property>
+             <property name="checked">
+              <bool>true</bool>
              </property>
             </widget>
            </item>
-           <item row="0" column="1">
-            <widget class="QDoubleSpinBox" name="SpinBox_speedPRW">
-             <property name="minimumSize">
-              <size>
-               <width>0</width>
-               <height>25</height>
-              </size>
-             </property>
-             <property name="maximumSize">
-              <size>
-               <width>16777215</width>
-               <height>25</height>
-              </size>
-             </property>
-             <property name="maximum">
-              <double>99999.990000000005239</double>
-             </property>
-            </widget>
-           </item>
-           <item row="1" column="0">
-            <widget class="QLabel" name="label_7">
+           <item>
+            <widget class="QRadioButton" name="radioButton_mutixMode">
              <property name="text">
-              <string>I</string>
-             </property>
-            </widget>
-           </item>
-           <item row="1" column="1">
-            <widget class="QDoubleSpinBox" name="SpinBox_speedIRW">
-             <property name="minimumSize">
-              <size>
-               <width>0</width>
-               <height>25</height>
-              </size>
-             </property>
-             <property name="maximumSize">
-              <size>
-               <width>16777215</width>
-               <height>25</height>
-              </size>
-             </property>
-             <property name="maximum">
-              <double>99999.990000000005239</double>
+              <string>多机</string>
              </property>
             </widget>
            </item>
           </layout>
-          <zorder>SpinBox_speedPRW</zorder>
-          <zorder>label_7</zorder>
-          <zorder>label_6</zorder>
-          <zorder>SpinBox_speedIRW</zorder>
          </widget>
         </item>
         <item>
-         <widget class="QGroupBox" name="groupBox_2">
-          <property name="title">
-           <string>Id</string>
+         <spacer name="horizontalSpacer">
+          <property name="orientation">
+           <enum>Qt::Horizontal</enum>
           </property>
-          <layout class="QGridLayout" name="gridLayout_4">
-           <item row="0" column="0">
-            <widget class="QLabel" name="label_12">
-             <property name="text">
-              <string>P</string>
-             </property>
-            </widget>
-           </item>
-           <item row="0" column="1">
-            <widget class="QDoubleSpinBox" name="SpinBox_idPRW">
-             <property name="minimumSize">
-              <size>
-               <width>0</width>
-               <height>25</height>
-              </size>
-             </property>
-             <property name="maximumSize">
-              <size>
-               <width>16777215</width>
-               <height>25</height>
-              </size>
-             </property>
-             <property name="maximum">
-              <double>99999.990000000005239</double>
-             </property>
-            </widget>
-           </item>
-           <item row="1" column="0">
-            <widget class="QLabel" name="label_13">
-             <property name="text">
-              <string>I</string>
-             </property>
-            </widget>
-           </item>
-           <item row="1" column="1">
-            <widget class="QDoubleSpinBox" name="SpinBox_idIRW">
-             <property name="minimumSize">
-              <size>
-               <width>0</width>
-               <height>25</height>
-              </size>
-             </property>
-             <property name="maximumSize">
-              <size>
-               <width>16777215</width>
-               <height>25</height>
-              </size>
-             </property>
-             <property name="maximum">
-              <double>99999.990000000005239</double>
-             </property>
-            </widget>
-           </item>
-          </layout>
-          <zorder>SpinBox_idPRW</zorder>
-          <zorder>label_13</zorder>
-          <zorder>SpinBox_idIRW</zorder>
-          <zorder>label_12</zorder>
+          <property name="sizeHint" stdset="0">
+           <size>
+            <width>28</width>
+            <height>20</height>
+           </size>
+          </property>
+         </spacer>
+        </item>
+        <item>
+         <widget class="QPushButton" name="pushButton_read">
+          <property name="minimumSize">
+           <size>
+            <width>0</width>
+            <height>30</height>
+           </size>
+          </property>
+          <property name="maximumSize">
+           <size>
+            <width>16777215</width>
+            <height>30</height>
+           </size>
+          </property>
+          <property name="text">
+           <string>  读取  </string>
+          </property>
          </widget>
         </item>
         <item>
-         <widget class="QGroupBox" name="groupBox_3">
-          <property name="title">
-           <string>Iq</string>
+         <widget class="QPushButton" name="pushButton_write">
+          <property name="minimumSize">
+           <size>
+            <width>0</width>
+            <height>30</height>
+           </size>
           </property>
-          <layout class="QGridLayout" name="gridLayout_5">
-           <item row="0" column="0">
-            <widget class="QLabel" name="label_14">
-             <property name="text">
-              <string>P</string>
-             </property>
-            </widget>
-           </item>
-           <item row="0" column="1">
-            <widget class="QDoubleSpinBox" name="SpinBox_iqPRW">
-             <property name="minimumSize">
-              <size>
-               <width>0</width>
-               <height>25</height>
-              </size>
-             </property>
-             <property name="maximumSize">
-              <size>
-               <width>16777215</width>
-               <height>25</height>
-              </size>
-             </property>
-             <property name="maximum">
-              <double>99999.990000000005239</double>
-             </property>
-            </widget>
-           </item>
-           <item row="1" column="0">
-            <widget class="QLabel" name="label_15">
-             <property name="text">
-              <string>I</string>
-             </property>
-            </widget>
-           </item>
-           <item row="1" column="1">
-            <widget class="QDoubleSpinBox" name="SpinBox_iqIRW">
-             <property name="minimumSize">
-              <size>
-               <width>0</width>
-               <height>25</height>
-              </size>
-             </property>
-             <property name="maximumSize">
-              <size>
-               <width>16777215</width>
-               <height>25</height>
-              </size>
-             </property>
-             <property name="maximum">
-              <double>99999.990000000005239</double>
-             </property>
-            </widget>
-           </item>
-          </layout>
-          <zorder>SpinBox_iqPRW</zorder>
-          <zorder>label_15</zorder>
-          <zorder>SpinBox_iqIRW</zorder>
-          <zorder>label_14</zorder>
+          <property name="maximumSize">
+           <size>
+            <width>16777215</width>
+            <height>30</height>
+           </size>
+          </property>
+          <property name="text">
+           <string>  写入  </string>
+          </property>
          </widget>
         </item>
        </layout>
       </item>
-      <item row="2" column="1" rowspan="2">
-       <widget class="QGroupBox" name="groupBox_6">
-        <property name="title">
-         <string>写模式</string>
-        </property>
-        <layout class="QVBoxLayout" name="verticalLayout">
-         <item>
-          <widget class="QRadioButton" name="radioButton_signleMode">
-           <property name="text">
-            <string>单机</string>
-           </property>
-           <property name="checked">
-            <bool>true</bool>
-           </property>
-          </widget>
-         </item>
-         <item>
-          <widget class="QRadioButton" name="radioButton_mutixMode">
-           <property name="text">
-            <string>多机</string>
-           </property>
-          </widget>
-         </item>
-        </layout>
-       </widget>
-      </item>
-      <item row="2" column="2">
-       <spacer name="horizontalSpacer">
-        <property name="orientation">
-         <enum>Qt::Horizontal</enum>
-        </property>
-        <property name="sizeHint" stdset="0">
-         <size>
-          <width>28</width>
-          <height>20</height>
-         </size>
-        </property>
-       </spacer>
-      </item>
-      <item row="2" column="3">
-       <widget class="QPushButton" name="pushButton_read">
-        <property name="minimumSize">
-         <size>
-          <width>0</width>
-          <height>30</height>
-         </size>
-        </property>
-        <property name="maximumSize">
-         <size>
-          <width>16777215</width>
-          <height>30</height>
-         </size>
-        </property>
-        <property name="text">
-         <string>  读取  </string>
-        </property>
-       </widget>
-      </item>
-      <item row="3" column="2">
-       <spacer name="horizontalSpacer_2">
-        <property name="orientation">
-         <enum>Qt::Horizontal</enum>
-        </property>
-        <property name="sizeHint" stdset="0">
-         <size>
-          <width>28</width>
-          <height>20</height>
-         </size>
-        </property>
-       </spacer>
-      </item>
-      <item row="3" column="3">
-       <widget class="QPushButton" name="pushButton_write">
-        <property name="minimumSize">
-         <size>
-          <width>0</width>
-          <height>30</height>
-         </size>
-        </property>
-        <property name="maximumSize">
-         <size>
-          <width>16777215</width>
-          <height>30</height>
-         </size>
-        </property>
-        <property name="text">
-         <string>  写入  </string>
-        </property>
-       </widget>
-      </item>
      </layout>
-     <zorder></zorder>
+     <zorder>pushButton_read</zorder>
+     <zorder>pushButton_write</zorder>
      <zorder>table_settings</zorder>
      <zorder></zorder>
      <zorder>groupBox_6</zorder>
@@ -750,409 +543,218 @@ QPushButton:disabled{
     <widget class="QGroupBox" name="groupBox_5">
      <property name="minimumSize">
       <size>
-       <width>461</width>
-       <height>281</height>
+       <width>343</width>
+       <height>0</height>
       </size>
      </property>
      <property name="maximumSize">
       <size>
-       <width>526</width>
-       <height>281</height>
+       <width>461</width>
+       <height>242</height>
       </size>
      </property>
      <property name="title">
       <string>实时数据</string>
      </property>
-     <layout class="QGridLayout" name="gridLayout_9">
-      <item row="0" column="0" colspan="3">
-       <layout class="QHBoxLayout" name="horizontalLayout_5" stretch="2,1,2">
+     <layout class="QGridLayout" name="gridLayout_6" columnstretch="5,1,4" rowminimumheight="0,0">
+      <item row="0" column="1">
+       <spacer name="horizontalSpacer_3">
+        <property name="orientation">
+         <enum>Qt::Horizontal</enum>
+        </property>
+        <property name="sizeHint" stdset="0">
+         <size>
+          <width>28</width>
+          <height>20</height>
+         </size>
+        </property>
+       </spacer>
+      </item>
+      <item row="0" column="2">
+       <widget class="QGroupBox" name="">
+        <layout class="QGridLayout" name="gridLayout_5">
+         <item row="0" column="0">
+          <widget class="QLabel" name="label_17">
+           <property name="text">
+            <string>运行状态</string>
+           </property>
+          </widget>
+         </item>
+         <item row="0" column="1">
+          <widget class="QcwIndicatorLamp" name="lamp_runState" native="true"/>
+         </item>
+         <item row="1" column="0">
+          <widget class="QLabel" name="label_18">
+           <property name="text">
+            <string>通信状态</string>
+           </property>
+          </widget>
+         </item>
+         <item row="1" column="1">
+          <widget class="QcwIndicatorLamp" name="lamp_comState" native="true">
+           <property name="sizePolicy">
+            <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
+             <horstretch>0</horstretch>
+             <verstretch>0</verstretch>
+            </sizepolicy>
+           </property>
+          </widget>
+         </item>
+        </layout>
+       </widget>
+      </item>
+      <item row="0" column="0">
+       <widget class="QGroupBox" name="">
+        <layout class="QGridLayout" name="gridLayout_3">
+         <item row="0" column="0">
+          <widget class="QLabel" name="label_9">
+           <property name="text">
+            <string>目标功率</string>
+           </property>
+          </widget>
+         </item>
+         <item row="0" column="1">
+          <widget class="QLCDNumber" name="lcdNumber_targetPower">
+           <property name="sizePolicy">
+            <sizepolicy hsizetype="Minimum" vsizetype="Fixed">
+             <horstretch>0</horstretch>
+             <verstretch>0</verstretch>
+            </sizepolicy>
+           </property>
+           <property name="minimumSize">
+            <size>
+             <width>0</width>
+             <height>25</height>
+            </size>
+           </property>
+          </widget>
+         </item>
+         <item row="1" column="0">
+          <widget class="QLabel" name="label_10">
+           <property name="text">
+            <string>实时功率</string>
+           </property>
+          </widget>
+         </item>
+         <item row="1" column="1">
+          <widget class="QLCDNumber" name="lcdNumber_nowPower">
+           <property name="sizePolicy">
+            <sizepolicy hsizetype="Minimum" vsizetype="Fixed">
+             <horstretch>0</horstretch>
+             <verstretch>0</verstretch>
+            </sizepolicy>
+           </property>
+           <property name="minimumSize">
+            <size>
+             <width>0</width>
+             <height>25</height>
+            </size>
+           </property>
+          </widget>
+         </item>
+         <item row="2" column="0">
+          <widget class="QLabel" name="label_11">
+           <property name="text">
+            <string>目标速度</string>
+           </property>
+          </widget>
+         </item>
+         <item row="2" column="1">
+          <widget class="QLCDNumber" name="lcdNumber_speedRef">
+           <property name="sizePolicy">
+            <sizepolicy hsizetype="Minimum" vsizetype="Fixed">
+             <horstretch>0</horstretch>
+             <verstretch>0</verstretch>
+            </sizepolicy>
+           </property>
+           <property name="minimumSize">
+            <size>
+             <width>0</width>
+             <height>25</height>
+            </size>
+           </property>
+          </widget>
+         </item>
+         <item row="3" column="0">
+          <widget class="QLabel" name="label_16">
+           <property name="text">
+            <string>实时速度</string>
+           </property>
+          </widget>
+         </item>
+         <item row="3" column="1">
+          <widget class="QLCDNumber" name="lcdNumber_speedFbk">
+           <property name="sizePolicy">
+            <sizepolicy hsizetype="Minimum" vsizetype="Fixed">
+             <horstretch>0</horstretch>
+             <verstretch>0</verstretch>
+            </sizepolicy>
+           </property>
+           <property name="minimumSize">
+            <size>
+             <width>0</width>
+             <height>25</height>
+            </size>
+           </property>
+          </widget>
+         </item>
+        </layout>
+       </widget>
+      </item>
+      <item row="1" column="0" colspan="3">
+       <layout class="QHBoxLayout" name="horizontalLayout_4">
         <item>
-         <layout class="QGridLayout" name="gridLayout_3">
-          <item row="0" column="0">
-           <widget class="QLabel" name="label_9">
-            <property name="text">
-             <string>目标功率</string>
-            </property>
-           </widget>
-          </item>
-          <item row="0" column="1">
-           <widget class="QLCDNumber" name="lcdNumber_targetPower">
-            <property name="sizePolicy">
-             <sizepolicy hsizetype="Minimum" vsizetype="Fixed">
-              <horstretch>0</horstretch>
-              <verstretch>0</verstretch>
-             </sizepolicy>
-            </property>
-            <property name="minimumSize">
-             <size>
-              <width>0</width>
-              <height>25</height>
-             </size>
-            </property>
-           </widget>
-          </item>
-          <item row="1" column="0">
-           <widget class="QLabel" name="label_10">
-            <property name="text">
-             <string>实时功率</string>
-            </property>
-           </widget>
-          </item>
-          <item row="1" column="1">
-           <widget class="QLCDNumber" name="lcdNumber_nowPower">
-            <property name="sizePolicy">
-             <sizepolicy hsizetype="Minimum" vsizetype="Fixed">
-              <horstretch>0</horstretch>
-              <verstretch>0</verstretch>
-             </sizepolicy>
-            </property>
-            <property name="minimumSize">
-             <size>
-              <width>0</width>
-              <height>25</height>
-             </size>
-            </property>
-           </widget>
-          </item>
-          <item row="2" column="0">
-           <widget class="QLabel" name="label_11">
-            <property name="text">
-             <string>目标速度</string>
-            </property>
-           </widget>
-          </item>
-          <item row="2" column="1">
-           <widget class="QLCDNumber" name="lcdNumber_speedRef">
-            <property name="sizePolicy">
-             <sizepolicy hsizetype="Minimum" vsizetype="Fixed">
-              <horstretch>0</horstretch>
-              <verstretch>0</verstretch>
-             </sizepolicy>
-            </property>
-            <property name="minimumSize">
-             <size>
-              <width>0</width>
-              <height>25</height>
-             </size>
-            </property>
-           </widget>
-          </item>
-          <item row="3" column="0">
-           <widget class="QLabel" name="label_16">
-            <property name="text">
-             <string>实时速度</string>
-            </property>
-           </widget>
-          </item>
-          <item row="3" column="1">
-           <widget class="QLCDNumber" name="lcdNumber_speedFbk">
-            <property name="sizePolicy">
-             <sizepolicy hsizetype="Minimum" vsizetype="Fixed">
-              <horstretch>0</horstretch>
-              <verstretch>0</verstretch>
-             </sizepolicy>
-            </property>
-            <property name="minimumSize">
-             <size>
-              <width>0</width>
-              <height>25</height>
-             </size>
-            </property>
-           </widget>
-          </item>
-         </layout>
-        </item>
-        <item>
-         <spacer name="horizontalSpacer_3">
+         <spacer name="horizontalSpacer_4">
           <property name="orientation">
            <enum>Qt::Horizontal</enum>
           </property>
           <property name="sizeHint" stdset="0">
            <size>
-            <width>57</width>
+            <width>40</width>
             <height>20</height>
            </size>
           </property>
          </spacer>
         </item>
         <item>
-         <layout class="QGridLayout" name="gridLayout_6">
-          <item row="0" column="0">
-           <widget class="QLabel" name="label_17">
-            <property name="text">
-             <string>运行状态</string>
-            </property>
-           </widget>
-          </item>
-          <item row="0" column="1">
-           <widget class="QcwIndicatorLamp" name="lamp_runState" native="true"/>
-          </item>
-          <item row="1" column="0">
-           <widget class="QLabel" name="label_18">
-            <property name="text">
-             <string>通信状态</string>
-            </property>
-           </widget>
-          </item>
-          <item row="1" column="1">
-           <widget class="QcwIndicatorLamp" name="lamp_comState" native="true"/>
-          </item>
-          <item row="2" column="0">
-           <widget class="QLabel" name="label_8">
-            <property name="text">
-             <string>电机极性</string>
-            </property>
-           </widget>
-          </item>
-          <item row="2" column="1">
-           <widget class="QLineEdit" name="lineEdit_poles">
-            <property name="minimumSize">
-             <size>
-              <width>0</width>
-              <height>25</height>
-             </size>
-            </property>
-            <property name="maximumSize">
-             <size>
-              <width>16777215</width>
-              <height>25</height>
-             </size>
-            </property>
-           </widget>
-          </item>
-         </layout>
-        </item>
-       </layout>
-      </item>
-      <item row="1" column="0" rowspan="3">
-       <layout class="QHBoxLayout" name="horizontalLayout_6">
-        <item>
-         <widget class="QGroupBox" name="groupBox_10">
+         <widget class="QPushButton" name="pushButton_startMotor">
           <property name="minimumSize">
            <size>
-            <width>126</width>
-            <height>90</height>
+            <width>0</width>
+            <height>30</height>
            </size>
           </property>
-          <property name="title">
-           <string>Speed</string>
+          <property name="maximumSize">
+           <size>
+            <width>16777215</width>
+            <height>30</height>
+           </size>
           </property>
-          <widget class="QCheckBox" name="checkBox_seepd1">
-           <property name="geometry">
-            <rect>
-             <x>20</x>
-             <y>20</y>
-             <width>91</width>
-             <height>16</height>
-            </rect>
-           </property>
-           <property name="text">
-            <string>示波器1</string>
-           </property>
-          </widget>
-          <widget class="QCheckBox" name="checkBox_seepd3">
-           <property name="geometry">
-            <rect>
-             <x>20</x>
-             <y>60</y>
-             <width>91</width>
-             <height>16</height>
-            </rect>
-           </property>
-           <property name="text">
-            <string>示波器3</string>
-           </property>
-          </widget>
-          <widget class="QCheckBox" name="checkBox_seepd2">
-           <property name="geometry">
-            <rect>
-             <x>20</x>
-             <y>40</y>
-             <width>91</width>
-             <height>16</height>
-            </rect>
-           </property>
-           <property name="text">
-            <string>示波器2</string>
-           </property>
-          </widget>
+          <property name="text">
+           <string>  启动  </string>
+          </property>
          </widget>
         </item>
         <item>
-         <widget class="QGroupBox" name="groupBox_11">
+         <widget class="QPushButton" name="pushButton_stopMotor">
           <property name="minimumSize">
            <size>
-            <width>125</width>
-            <height>90</height>
+            <width>0</width>
+            <height>30</height>
            </size>
           </property>
-          <property name="title">
-           <string>Id</string>
-          </property>
-          <widget class="QCheckBox" name="checkBox_id1">
-           <property name="geometry">
-            <rect>
-             <x>20</x>
-             <y>20</y>
-             <width>81</width>
-             <height>16</height>
-            </rect>
-           </property>
-           <property name="text">
-            <string>示波器1</string>
-           </property>
-          </widget>
-          <widget class="QCheckBox" name="checkBox_id3">
-           <property name="geometry">
-            <rect>
-             <x>20</x>
-             <y>60</y>
-             <width>81</width>
-             <height>16</height>
-            </rect>
-           </property>
-           <property name="text">
-            <string>示波器3</string>
-           </property>
-          </widget>
-          <widget class="QCheckBox" name="checkBox_id2">
-           <property name="geometry">
-            <rect>
-             <x>20</x>
-             <y>40</y>
-             <width>81</width>
-             <height>16</height>
-            </rect>
-           </property>
-           <property name="text">
-            <string>示波器2</string>
-           </property>
-          </widget>
-         </widget>
-        </item>
-        <item>
-         <widget class="QGroupBox" name="groupBox_12">
-          <property name="minimumSize">
+          <property name="maximumSize">
            <size>
-            <width>126</width>
-            <height>90</height>
+            <width>16777215</width>
+            <height>30</height>
            </size>
           </property>
-          <property name="title">
-           <string>Iq</string>
+          <property name="text">
+           <string>  停止  </string>
           </property>
-          <widget class="QCheckBox" name="checkBox_iq1">
-           <property name="geometry">
-            <rect>
-             <x>20</x>
-             <y>20</y>
-             <width>81</width>
-             <height>16</height>
-            </rect>
-           </property>
-           <property name="text">
-            <string>示波器1</string>
-           </property>
-          </widget>
-          <widget class="QCheckBox" name="checkBox_iq3">
-           <property name="geometry">
-            <rect>
-             <x>20</x>
-             <y>60</y>
-             <width>81</width>
-             <height>16</height>
-            </rect>
-           </property>
-           <property name="text">
-            <string>示波器3</string>
-           </property>
-          </widget>
-          <widget class="QCheckBox" name="checkBox_iq2">
-           <property name="geometry">
-            <rect>
-             <x>20</x>
-             <y>40</y>
-             <width>81</width>
-             <height>16</height>
-            </rect>
-           </property>
-           <property name="text">
-            <string>示波器2</string>
-           </property>
-          </widget>
          </widget>
         </item>
        </layout>
-      </item>
-      <item row="1" column="2">
-       <widget class="QPushButton" name="pushButton_startMotor">
-        <property name="minimumSize">
-         <size>
-          <width>0</width>
-          <height>30</height>
-         </size>
-        </property>
-        <property name="maximumSize">
-         <size>
-          <width>16777215</width>
-          <height>30</height>
-         </size>
-        </property>
-        <property name="text">
-         <string>  启动  </string>
-        </property>
-       </widget>
-      </item>
-      <item row="2" column="1">
-       <spacer name="horizontalSpacer_4">
-        <property name="orientation">
-         <enum>Qt::Horizontal</enum>
-        </property>
-        <property name="sizeHint" stdset="0">
-         <size>
-          <width>40</width>
-          <height>20</height>
-         </size>
-        </property>
-       </spacer>
-      </item>
-      <item row="2" column="2">
-       <widget class="QPushButton" name="pushButton_stopMotor">
-        <property name="minimumSize">
-         <size>
-          <width>0</width>
-          <height>30</height>
-         </size>
-        </property>
-        <property name="maximumSize">
-         <size>
-          <width>16777215</width>
-          <height>30</height>
-         </size>
-        </property>
-        <property name="text">
-         <string>  停止  </string>
-        </property>
-       </widget>
-      </item>
-      <item row="3" column="2">
-       <widget class="QPushButton" name="pushButton_change">
-        <property name="minimumSize">
-         <size>
-          <width>0</width>
-          <height>30</height>
-         </size>
-        </property>
-        <property name="maximumSize">
-         <size>
-          <width>16777215</width>
-          <height>30</height>
-         </size>
-        </property>
-        <property name="text">
-         <string>  换向  </string>
-        </property>
-       </widget>
       </item>
      </layout>
     </widget>
@@ -1162,7 +764,7 @@ QPushButton:disabled{
      <property name="maximumSize">
       <size>
        <width>16777215</width>
-       <height>281</height>
+       <height>242</height>
       </size>
      </property>
      <property name="title">
@@ -1176,246 +778,276 @@ QPushButton:disabled{
     </widget>
    </item>
    <item row="0" column="3">
-    <layout class="QGridLayout" name="gridLayout_8">
-     <item row="0" column="0" rowspan="3">
-      <widget class="QGroupBox" name="groupBox_7">
-       <property name="title">
-        <string>通信模式</string>
-       </property>
-       <layout class="QVBoxLayout" name="verticalLayout_3">
-        <item>
-         <widget class="QRadioButton" name="radioButton_tcp">
-          <property name="text">
-           <string>TCP/IP</string>
-          </property>
-          <property name="checked">
-           <bool>false</bool>
-          </property>
-         </widget>
-        </item>
-        <item>
-         <widget class="QRadioButton" name="radioButton_modbus">
-          <property name="text">
-           <string>ModBus</string>
-          </property>
-          <property name="checked">
-           <bool>true</bool>
-          </property>
-         </widget>
-        </item>
-        <item>
-         <widget class="QRadioButton" name="radioButton_can">
-          <property name="text">
-           <string>CAN   </string>
-          </property>
-          <property name="checked">
-           <bool>false</bool>
-          </property>
-         </widget>
-        </item>
-       </layout>
-      </widget>
-     </item>
-     <item row="0" column="1">
-      <widget class="QPushButton" name="connectButton">
-       <property name="minimumSize">
-        <size>
-         <width>0</width>
-         <height>30</height>
-        </size>
-       </property>
-       <property name="maximumSize">
-        <size>
-         <width>16777215</width>
-         <height>30</height>
-        </size>
-       </property>
-       <property name="text">
-        <string>  connect  </string>
-       </property>
-      </widget>
-     </item>
-     <item row="1" column="1">
-      <widget class="QPushButton" name="startButton">
-       <property name="minimumSize">
-        <size>
-         <width>0</width>
-         <height>30</height>
-        </size>
-       </property>
-       <property name="maximumSize">
-        <size>
-         <width>16777215</width>
-         <height>30</height>
-        </size>
-       </property>
-       <property name="text">
-        <string>  开始  </string>
-       </property>
-      </widget>
-     </item>
-     <item row="2" column="1">
-      <widget class="QPushButton" name="stopButton">
-       <property name="minimumSize">
-        <size>
-         <width>0</width>
-         <height>30</height>
-        </size>
-       </property>
-       <property name="maximumSize">
-        <size>
-         <width>16777215</width>
-         <height>30</height>
-        </size>
-       </property>
-       <property name="text">
-        <string>  暂停  </string>
-       </property>
-      </widget>
-     </item>
-     <item row="3" column="0" colspan="2">
-      <widget class="QGroupBox" name="groupBox_8">
-       <property name="minimumSize">
-        <size>
-         <width>0</width>
-         <height>0</height>
-        </size>
-       </property>
-       <property name="title">
-        <string/>
-       </property>
-       <layout class="QGridLayout" name="gridLayout_7">
-        <item row="0" column="0">
-         <widget class="QLabel" name="label_19">
-          <property name="text">
-           <string>当前机组</string>
-          </property>
-         </widget>
-        </item>
-        <item row="0" column="1">
-         <widget class="QSpinBox" name="spinBox_currentaddress">
-          <property name="minimumSize">
-           <size>
-            <width>0</width>
-            <height>25</height>
-           </size>
-          </property>
-          <property name="maximumSize">
-           <size>
-            <width>16777215</width>
-            <height>25</height>
-           </size>
-          </property>
-          <property name="maximum">
-           <number>255</number>
-          </property>
-          <property name="value">
-           <number>1</number>
-          </property>
-         </widget>
-        </item>
-        <item row="1" column="0">
-         <widget class="QLabel" name="label_20">
-          <property name="text">
-           <string>起始地址</string>
-          </property>
-         </widget>
-        </item>
-        <item row="1" column="1">
-         <widget class="QSpinBox" name="spinBox_startaddress">
-          <property name="minimumSize">
-           <size>
-            <width>0</width>
-            <height>25</height>
-           </size>
-          </property>
-          <property name="maximumSize">
-           <size>
-            <width>16777215</width>
-            <height>25</height>
-           </size>
-          </property>
-          <property name="maximum">
-           <number>255</number>
-          </property>
-          <property name="value">
-           <number>1</number>
-          </property>
-         </widget>
-        </item>
-        <item row="2" column="0">
-         <widget class="QLabel" name="label_21">
-          <property name="text">
-           <string>机组数量</string>
-          </property>
-         </widget>
-        </item>
-        <item row="2" column="1">
-         <widget class="QSpinBox" name="spinBox_motorNum">
-          <property name="minimumSize">
-           <size>
-            <width>0</width>
-            <height>25</height>
-           </size>
-          </property>
-          <property name="maximumSize">
-           <size>
-            <width>16777215</width>
-            <height>25</height>
-           </size>
-          </property>
-          <property name="maximum">
-           <number>255</number>
-          </property>
-          <property name="value">
-           <number>20</number>
-          </property>
-         </widget>
-        </item>
-        <item row="3" column="0">
-         <widget class="QLabel" name="label_22">
-          <property name="text">
-           <string>扫描周期</string>
-          </property>
-         </widget>
-        </item>
-        <item row="3" column="1">
-         <widget class="QSpinBox" name="spinBox_timePeriod">
-          <property name="minimumSize">
-           <size>
-            <width>0</width>
-            <height>25</height>
-           </size>
-          </property>
-          <property name="suffix">
-           <string>ms</string>
-          </property>
-          <property name="maximum">
-           <number>10000</number>
-          </property>
-          <property name="singleStep">
-           <number>10</number>
-          </property>
-          <property name="value">
-           <number>200</number>
-          </property>
-         </widget>
-        </item>
-       </layout>
-      </widget>
-     </item>
-    </layout>
+    <widget class="QFrame" name="">
+     <property name="maximumSize">
+      <size>
+       <width>16777215</width>
+       <height>242</height>
+      </size>
+     </property>
+     <layout class="QGridLayout" name="gridLayout">
+      <item row="0" column="0" rowspan="3">
+       <widget class="QGroupBox" name="groupBox_7">
+        <property name="title">
+         <string>通信模式</string>
+        </property>
+        <widget class="QRadioButton" name="radioButton_tcp">
+         <property name="geometry">
+          <rect>
+           <x>10</x>
+           <y>22</y>
+           <width>59</width>
+           <height>16</height>
+          </rect>
+         </property>
+         <property name="text">
+          <string>TCP/IP</string>
+         </property>
+         <property name="checked">
+          <bool>false</bool>
+         </property>
+        </widget>
+        <widget class="QRadioButton" name="radioButton_modbus">
+         <property name="geometry">
+          <rect>
+           <x>10</x>
+           <y>44</y>
+           <width>59</width>
+           <height>16</height>
+          </rect>
+         </property>
+         <property name="text">
+          <string>ModBus</string>
+         </property>
+         <property name="checked">
+          <bool>true</bool>
+         </property>
+        </widget>
+        <widget class="QRadioButton" name="radioButton_can">
+         <property name="geometry">
+          <rect>
+           <x>10</x>
+           <y>66</y>
+           <width>59</width>
+           <height>16</height>
+          </rect>
+         </property>
+         <property name="text">
+          <string>CAN   </string>
+         </property>
+         <property name="checked">
+          <bool>false</bool>
+         </property>
+        </widget>
+       </widget>
+      </item>
+      <item row="0" column="1">
+       <widget class="QPushButton" name="connectButton">
+        <property name="minimumSize">
+         <size>
+          <width>0</width>
+          <height>30</height>
+         </size>
+        </property>
+        <property name="maximumSize">
+         <size>
+          <width>16777215</width>
+          <height>30</height>
+         </size>
+        </property>
+        <property name="text">
+         <string>  connect  </string>
+        </property>
+       </widget>
+      </item>
+      <item row="1" column="1">
+       <widget class="QPushButton" name="startButton">
+        <property name="minimumSize">
+         <size>
+          <width>0</width>
+          <height>30</height>
+         </size>
+        </property>
+        <property name="maximumSize">
+         <size>
+          <width>16777215</width>
+          <height>30</height>
+         </size>
+        </property>
+        <property name="text">
+         <string>  开始  </string>
+        </property>
+       </widget>
+      </item>
+      <item row="2" column="1">
+       <widget class="QPushButton" name="stopButton">
+        <property name="minimumSize">
+         <size>
+          <width>0</width>
+          <height>30</height>
+         </size>
+        </property>
+        <property name="maximumSize">
+         <size>
+          <width>16777215</width>
+          <height>30</height>
+         </size>
+        </property>
+        <property name="text">
+         <string>  暂停  </string>
+        </property>
+       </widget>
+      </item>
+      <item row="3" column="0" colspan="2">
+       <widget class="QGroupBox" name="groupBox_8">
+        <property name="minimumSize">
+         <size>
+          <width>0</width>
+          <height>0</height>
+         </size>
+        </property>
+        <property name="title">
+         <string/>
+        </property>
+        <layout class="QGridLayout" name="gridLayout_4">
+         <item row="0" column="0">
+          <widget class="QLabel" name="label_19">
+           <property name="text">
+            <string>当前机组</string>
+           </property>
+          </widget>
+         </item>
+         <item row="0" column="1">
+          <widget class="QSpinBox" name="spinBox_currentaddress">
+           <property name="minimumSize">
+            <size>
+             <width>0</width>
+             <height>25</height>
+            </size>
+           </property>
+           <property name="maximumSize">
+            <size>
+             <width>16777215</width>
+             <height>25</height>
+            </size>
+           </property>
+           <property name="maximum">
+            <number>255</number>
+           </property>
+           <property name="value">
+            <number>1</number>
+           </property>
+          </widget>
+         </item>
+         <item row="1" column="0">
+          <widget class="QLabel" name="label_20">
+           <property name="text">
+            <string>起始地址</string>
+           </property>
+          </widget>
+         </item>
+         <item row="1" column="1">
+          <widget class="QSpinBox" name="spinBox_startaddress">
+           <property name="minimumSize">
+            <size>
+             <width>0</width>
+             <height>25</height>
+            </size>
+           </property>
+           <property name="maximumSize">
+            <size>
+             <width>16777215</width>
+             <height>25</height>
+            </size>
+           </property>
+           <property name="maximum">
+            <number>255</number>
+           </property>
+           <property name="value">
+            <number>1</number>
+           </property>
+          </widget>
+         </item>
+         <item row="2" column="0">
+          <widget class="QLabel" name="label_21">
+           <property name="text">
+            <string>机组数量</string>
+           </property>
+          </widget>
+         </item>
+         <item row="2" column="1">
+          <widget class="QSpinBox" name="spinBox_motorNum">
+           <property name="minimumSize">
+            <size>
+             <width>0</width>
+             <height>25</height>
+            </size>
+           </property>
+           <property name="maximumSize">
+            <size>
+             <width>16777215</width>
+             <height>25</height>
+            </size>
+           </property>
+           <property name="maximum">
+            <number>255</number>
+           </property>
+           <property name="value">
+            <number>20</number>
+           </property>
+          </widget>
+         </item>
+         <item row="3" column="0">
+          <widget class="QLabel" name="label_22">
+           <property name="text">
+            <string>扫描周期</string>
+           </property>
+          </widget>
+         </item>
+         <item row="3" column="1">
+          <widget class="QSpinBox" name="spinBox_timePeriod">
+           <property name="minimumSize">
+            <size>
+             <width>0</width>
+             <height>25</height>
+            </size>
+           </property>
+           <property name="suffix">
+            <string>ms</string>
+           </property>
+           <property name="maximum">
+            <number>10000</number>
+           </property>
+           <property name="singleStep">
+            <number>10</number>
+           </property>
+           <property name="value">
+            <number>200</number>
+           </property>
+          </widget>
+         </item>
+        </layout>
+       </widget>
+      </item>
+     </layout>
+    </widget>
    </item>
    <item row="1" column="0" colspan="4">
     <widget class="QTableWidget" name="table_realtime">
+     <property name="sizePolicy">
+      <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
+       <horstretch>0</horstretch>
+       <verstretch>0</verstretch>
+      </sizepolicy>
+     </property>
      <property name="rowCount">
       <number>20</number>
      </property>
      <attribute name="horizontalHeaderDefaultSectionSize">
-      <number>130</number>
+      <number>140</number>
      </attribute>
      <attribute name="horizontalHeaderMinimumSectionSize">
-      <number>35</number>
+      <number>45</number>
      </attribute>
      <attribute name="horizontalHeaderStretchLastSection">
       <bool>true</bool>
@@ -1453,11 +1085,6 @@ QPushButton:disabled{
      <column>
       <property name="text">
        <string>机组号</string>
-      </property>
-     </column>
-     <column>
-      <property name="text">
-       <string>电机极性</string>
       </property>
      </column>
      <column>
@@ -1500,7 +1127,12 @@ QPushButton:disabled{
        <string>通信状态</string>
       </property>
      </column>
-     <item row="0" column="9">
+     <column>
+      <property name="text">
+       <string>未定义</string>
+      </property>
+     </column>
+     <item row="0" column="8">
       <property name="text">
        <string/>
       </property>

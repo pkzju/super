@@ -44,7 +44,7 @@ void CenterWindow::initUI()
     SerialPortUi *serialportsettingsdialog = new SerialPortUi;
     MPlotUi *plotUi = new MPlotUi;
     FTabWidget *Com = new FTabWidget;
-    ModbusUi *modbusui = new ModbusUi;
+    ModbusUi *modbusui = ModbusUi::getInstance();
     FanMotorUi *fanmotorui = new FanMotorUi;
     Com->addWidget(QStringLiteral("CAN"),"canBtn",canUi);
     Com->addWidget(QStringLiteral("串口"),"serialportBtn",serialportsettingsdialog);

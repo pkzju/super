@@ -24,6 +24,8 @@ class ModbusUi : public QWidget
 public:
     explicit ModbusUi(QWidget *parent = 0);
     ~ModbusUi();
+    static ModbusUi *getInstance();
+    QModbusClient *getModbusDevice();
 
 private slots:
     void checkCustomBaudRatePolicy(int idx);
@@ -48,6 +50,7 @@ private:
     QModbusDataUnit readRequest() const;
     QModbusDataUnit writeRequest() const;
 
+
 private:
     Ui::ModbusUi *ui;
     QModbusReply* lastRequest;
@@ -56,6 +59,7 @@ private:
     quint8 ROW_COUNT;//number of registers
 
     QIntValidator *intValidator;
+    static ModbusUi* instance;
 };
 
 #endif // MODBUSUI_H

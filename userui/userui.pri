@@ -16,8 +16,7 @@ HEADERS += \
     $$PWD/homewindow.h \
     $$PWD/modbusui.h \
     $$PWD/writeregistermodel.h \
-    $$PWD/fanmotorui.h \
-    $$PWD/settingmodel.h
+    $$PWD/fanmotorui.h
 
 
 SOURCES += \
@@ -28,6 +27,5 @@ SOURCES += \
     $$PWD/homewindow.cpp \
     $$PWD/modbusui.cpp \
     $$PWD/writeregistermodel.cpp \
-    $$PWD/fanmotorui.cpp \
-    $$PWD/settingmodel.cpp
+    $$PWD/fanmotorui.cpp
 
