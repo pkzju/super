@@ -532,11 +532,8 @@ QPushButton:disabled{
        </layout>
       </item>
      </layout>
-     <zorder>pushButton_read</zorder>
-     <zorder>pushButton_write</zorder>
      <zorder>table_settings</zorder>
      <zorder></zorder>
-     <zorder>groupBox_6</zorder>
     </widget>
    </item>
    <item row="0" column="1">
@@ -571,7 +568,7 @@ QPushButton:disabled{
        </spacer>
       </item>
       <item row="0" column="2">
-       <widget class="QGroupBox" name="">
+       <widget class="QGroupBox" name="groupBox">
         <layout class="QGridLayout" name="gridLayout_5">
          <item row="0" column="0">
           <widget class="QLabel" name="label_17">
@@ -604,7 +601,7 @@ QPushButton:disabled{
        </widget>
       </item>
       <item row="0" column="0">
-       <widget class="QGroupBox" name="">
+       <widget class="QGroupBox" name="groupBox">
         <layout class="QGridLayout" name="gridLayout_3">
          <item row="0" column="0">
           <widget class="QLabel" name="label_9">
@@ -778,7 +775,7 @@ QPushButton:disabled{
     </widget>
    </item>
    <item row="0" column="3">
-    <widget class="QFrame" name="">
+    <widget class="QFrame" name="frame">
      <property name="maximumSize">
       <size>
        <width>16777215</width>
@@ -856,7 +853,7 @@ QPushButton:disabled{
          </size>
         </property>
         <property name="text">
-         <string>  connect  </string>
+         <string>   connect   </string>
         </property>
        </widget>
       </item>
@@ -875,12 +872,12 @@ QPushButton:disabled{
          </size>
         </property>
         <property name="text">
-         <string>  开始  </string>
+         <string>  start  </string>
         </property>
        </widget>
       </item>
       <item row="2" column="1">
-       <widget class="QPushButton" name="stopButton">
+       <widget class="QPushButton" name="searchButton">
         <property name="minimumSize">
          <size>
           <width>0</width>
@@ -894,7 +891,7 @@ QPushButton:disabled{
          </size>
         </property>
         <property name="text">
-         <string>  暂停  </string>
+         <string>  检测  </string>
         </property>
        </widget>
       </item>
@@ -993,7 +990,7 @@ QPushButton:disabled{
             <number>255</number>
            </property>
            <property name="value">
-            <number>20</number>
+            <number>10</number>
            </property>
           </widget>
          </item>
@@ -1135,12 +1132,6 @@ QPushButton:disabled{
      <item row="0" column="8">
       <property name="text">
        <string/>
-      </property>
-      <property name="icon">
-       <iconset>
-        <activeoff>:/images/skin/icons/led_off.png</activeoff>
-        <activeon>:/images/skin/icons/led_on.png</activeon>
-       </iconset>
       </property>
      </item>
     </widget>

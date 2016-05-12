@@ -52,7 +52,6 @@ void MainWindow::initUI()
 
     LampOfStatusBar =new QcwIndicatorLamp;
     LampOfStatusBar->setFixedSize(20,20);
-    LampOfStatusBar->setLampState(LampState::lamp_grey);
     LabelOfStatusBar = new QLabel(QStringLiteral("端口未打开 "));
     RxLabelOfStatusBar = new QLabel(QStringLiteral("接收:00000"));
     TxLabelOfStatusBar = new QLabel(QStringLiteral("发送:00000"));

@@ -4,7 +4,7 @@
 QcwIndicatorLamp::QcwIndicatorLamp(QWidget *parent): QWidget(parent)
 {
     m_alarm = false;
-    lamp_state = lamp_green;
+    lamp_state = QcwIndicatorLamp::lamp_grey;
     resize(100, 100);
 }
 
@@ -37,25 +37,25 @@ void QcwIndicatorLamp::paintEvent(QPaintEvent *)
 	/* 内部指示颜色 */
     radius -= 4;
     QRadialGradient rg(0, 0, radius);
-    if(lamp_state == LampState::lamp_red)
+    if(lamp_state == QcwIndicatorLamp::lamp_red)
     {
         rg.setColorAt(0, QColor(245, 0, 0));
         rg.setColorAt(0.6, QColor(210, 0, 0));
         rg.setColorAt(1, QColor(166, 0, 0));
     }
-    else if(lamp_state == LampState::lamp_green)
+    else if(lamp_state == QcwIndicatorLamp::lamp_green)
     {
         rg.setColorAt(0, QColor(0, 245, 0));
         rg.setColorAt(0.6, QColor(0, 210, 0));
         rg.setColorAt(1, QColor(0, 166, 0));
     }
-    else if(lamp_state == LampState::lamp_blue)
+    else if(lamp_state == QcwIndicatorLamp::lamp_blue)
     {
         rg.setColorAt(0, QColor(0, 0, 245));
         rg.setColorAt(0.6, QColor(0, 0, 210));
         rg.setColorAt(1, QColor(0, 0, 166));
     }
-    else if(lamp_state == LampState::lamp_grey)
+    else if(lamp_state == QcwIndicatorLamp::lamp_grey)
     {
         rg.setColorAt(0, QColor(211, 211, 211));
         rg.setColorAt(0.6, QColor(200, 200, 200));
@@ -86,7 +86,7 @@ void QcwIndicatorLamp::setAlarm(bool alarm)
 	update();
 }
 
-void QcwIndicatorLamp::setLampState(LampState s)
+void QcwIndicatorLamp::setLampState(QcwIndicatorLamp::LampState s)
 {
     lamp_state = s;
     update();

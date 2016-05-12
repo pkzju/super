@@ -17,6 +17,7 @@ class FanMotorUi;
 }
 QT_END_NAMESPACE
 
+class QcwIndicatorLamp;
 
 class FanMotorUi : public QWidget
 {
@@ -38,7 +39,11 @@ private slots:
 
     void on_startButton_clicked();
 
-    void on_stopButton_clicked();
+    void on_searchButton_clicked();
+
+    void on_spinBox_startaddress_valueChanged(int arg1);
+
+    void on_spinBox_motorNum_valueChanged(int arg1);
 
 private:
     QModbusDataUnit readRequest() const;
@@ -49,10 +54,15 @@ private:
     ModbusUi *m_modbusUi;
     QModbusClient* modbusDevice;
     QVector<QMotor*> m_motor;
+    QVector<QcwIndicatorLamp*> m_commLamp;
     QTimer *m_pollingTimer;
     int m_currentServerAddress;
+    int m_startServerAddress;
+    int m_motorNum;
+    bool m_isSearching;
 
     void sendOnePolling(int address);
+
 };
 
 #endif // FANMOTORUI_H

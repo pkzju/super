@@ -31,6 +31,10 @@ enum class QCommunicationState : char{
     m_connect,
 };
 
+
+const quint16 g_mSettingsRegisterAddress = 0x0040;
+const quint16 g_mControllerRegisterAddress = 0x0060;
+const quint16 g_mPIParaRegisterAddress = 0x0060;
 /********************
  *
  *******************/

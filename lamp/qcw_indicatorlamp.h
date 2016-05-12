@@ -25,14 +25,6 @@
 
 #include <QWidget>
 
-enum LampState
-{
-    lamp_grey  ,
-    lamp_red   ,
-    lamp_green ,
-    lamp_blue  ,
-    lamp_alarm
-};
 
 class QColor;
 
@@ -44,12 +36,22 @@ class Q_DECL_EXPORT QcwIndicatorLamp: public QWidget
 public:    
     explicit QcwIndicatorLamp(QWidget *parent = 0);
 	bool isAlarm() const {return m_alarm;}
+
+public:
+    enum LampState
+    {
+        lamp_grey  ,
+        lamp_red   ,
+        lamp_green ,
+        lamp_blue  ,
+        lamp_alarm
+    };
 		       	            
 Q_SIGNALS:
 
 public Q_SLOTS:
 	void setAlarm(bool);
-    void setLampState(LampState s);
+    void setLampState(QcwIndicatorLamp::LampState s);
 
 protected:
 	void paintEvent(QPaintEvent *);
