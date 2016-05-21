@@ -214,7 +214,7 @@ ModbusUi *ModbusUi::getInstance()
     return instance;
 }
 
-QModbusClient *ModbusUi::getModbusDevice()
+QModbusClient* ModbusUi::getModbusDevice()
 {
     return modbusDevice;
 }
@@ -315,7 +315,7 @@ void ModbusUi::readReady()
     if (reply->error() == QModbusDevice::NoError) {
         const QModbusDataUnit unit = reply->result();
         for (uint i = 0; i < unit.valueCount(); i++) {
-            const QString entry = tr("Address: %1, Value: %2").arg(QString::number(unit.startAddress()+i, 16))
+            const QString entry = tr("Address: 0x%1, Value: %2").arg(QString::number(unit.startAddress()+i, 16))
                                      .arg(QString::number(unit.value(i),
                                           unit.registerType() <= QModbusDataUnit::Coils ? 10 : 16));
             ui->readValue->addItem(entry);
