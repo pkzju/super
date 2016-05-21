@@ -1,3 +1,10 @@
+QAbstractItemModel{
+    text-align:center;
+}
+
+QTextBrowser{
+    font-size: 14px;
+}
 /***********************************************************/
 /* QMainWindow Style*/
 /***********************************************************/
@@ -352,15 +359,15 @@ QSizeGrip {
 /* ******************QGroupBox****************** */
 QGroupBox {
 /*	border: 0.5px solid rgba(12, 112, 208, 255);*/
-    margin-top: 5px; 
-	padding-top: 8px;
+    margin-top: 3px; 
+	padding-top: 5px;
 	font-size: 16px;
 }
 
 QGroupBox::title {
     subcontrol-origin: margin;
     subcontrol-position: top left; 
-    font-size: 16px;
+    font-size: 14px;
     font-weight:  bold;
     color:rgb(60, 104, 137);
 }

@@ -58,7 +58,8 @@ SOURCES += \
     lamp/qcw_indicatorlamp.cpp \
     thread/canthread.cpp \
     thread/serialportthread.cpp \
-    parser/protocal.cpp
+    parser/protocal.cpp \
+    fanmotor/qmotor.cpp
 
 # header
 HEADERS  += \
@@ -76,7 +77,9 @@ HEADERS  += \
     thread/canthread.h \
     thread/serialportthread.h \
     parser/protocal.h \
-    qmotor/qmotor.h
+    qmotor.h \
+    fanmotor/fanmotor.h \
+    fanmotor/qmotor.h
 
 # resources
 RESOURCES += \

@@ -92,4 +92,9 @@ void QcwIndicatorLamp::setLampState(QcwIndicatorLamp::LampState s)
     update();
 }
 
+QcwIndicatorLamp::LampState QcwIndicatorLamp::getLampState()
+{
+    return lamp_state;
+}
+
 

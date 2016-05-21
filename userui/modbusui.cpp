@@ -68,14 +68,14 @@ ModbusUi::ModbusUi(QWidget *parent) :
     ui->writeSize->setModel(model);
     connect(ui->writeSize,&QComboBox::currentTextChanged, writeModel,
         &WriteRegisterModel::setNumberOfValues);
-    ui->writeSize->setCurrentText(tr("%1").arg(ROW_COUNT));
+    ui->writeSize->setCurrentText(tr("%1").arg(3));
 
     //~~Init comboBox of readSize~~
     QStandardItemModel *model2 = new QStandardItemModel(ROW_COUNT, 1, this);
     for (int i = 0; i < ROW_COUNT; ++i)
         model2->setItem(i, new QStandardItem(QStringLiteral("%1").arg(i + 1)));
     ui->readSize->setModel(model2);
-    ui->readSize->setCurrentText(tr("%1").arg(ROW_COUNT));
+    ui->readSize->setCurrentText(tr("%1").arg(3));
 
     auto valueChanged = static_cast<void (QSpinBox::*)(int)> (&QSpinBox::valueChanged);
     connect(ui->writeAddress, valueChanged, writeModel, &WriteRegisterModel::setStartAddress);
@@ -234,6 +234,7 @@ void ModbusUi::fillPortsInfo()
 void ModbusUi::on_searchButton_clicked()
 {
     fillPortsInfo();
+    ui->serialPortInfoListBox->showPopup();
 }
 void ModbusUi::checkCustomBaudRatePolicy(int idx)
 {
@@ -274,6 +275,7 @@ void ModbusUi::fillPortsParameters()
     ui->parityCombo->addItem(tr("Odd"), QSerialPort::OddParity);
     ui->parityCombo->addItem(tr("Mark"), QSerialPort::MarkParity);
     ui->parityCombo->addItem(tr("Space"), QSerialPort::SpaceParity);
+    ui->parityCombo->setCurrentIndex(1);
 
     ui->stopBitsCombo->addItem(QStringLiteral("1"), QSerialPort::OneStop);
 #ifdef Q_OS_WIN
@@ -281,9 +283,6 @@ void ModbusUi::fillPortsParameters()
 #endif
     ui->stopBitsCombo->addItem(QStringLiteral("2"), QSerialPort::TwoStop);
 
-    ui->flowControlBox->addItem(tr("None"), QSerialPort::NoFlowControl);
-    ui->flowControlBox->addItem(tr("RTS/CTS"), QSerialPort::HardwareControl);
-    ui->flowControlBox->addItem(tr("XON/XOFF"), QSerialPort::SoftwareControl);
 }
 
 void ModbusUi::on_readButton_clicked()
@@ -316,7 +315,7 @@ void ModbusUi::readReady()
     if (reply->error() == QModbusDevice::NoError) {
         const QModbusDataUnit unit = reply->result();
         for (uint i = 0; i < unit.valueCount(); i++) {
-            const QString entry = tr("Address: %1, Value: %2").arg(unit.startAddress())
+            const QString entry = tr("Address: %1, Value: %2").arg(QString::number(unit.startAddress()+i, 16))
                                      .arg(QString::number(unit.value(i),
                                           unit.registerType() <= QModbusDataUnit::Coils ? 10 : 16));
             ui->readValue->addItem(entry);
@@ -346,9 +345,9 @@ void ModbusUi::on_writeButton_clicked()
     QModbusDataUnit::RegisterType table = writeUnit.registerType();
     for (uint i = 0; i < writeUnit.valueCount(); i++) {
         if (table == QModbusDataUnit::Coils)
-            writeUnit.setValue(i, writeModel->m_coils[i + writeUnit.startAddress()]);
+            writeUnit.setValue(i, writeModel->m_coils[i]);
         else
-            writeUnit.setValue(i, writeModel->m_holdingRegisters[i + writeUnit.startAddress()]);
+            writeUnit.setValue(i, writeModel->m_holdingRegisters[i]);
     }
 
     if (auto *reply = modbusDevice->sendWriteRequest(writeUnit, ui->serverEdit->value())) {
@@ -384,9 +383,9 @@ void ModbusUi::on_readWriteButton_clicked()
     QModbusDataUnit::RegisterType table = writeUnit.registerType();
     for (uint i = 0; i < writeUnit.valueCount(); i++) {
         if (table == QModbusDataUnit::Coils)
-            writeUnit.setValue(i, writeModel->m_coils[i + writeUnit.startAddress()]);
+            writeUnit.setValue(i, writeModel->m_coils[i]);
         else
-            writeUnit.setValue(i, writeModel->m_holdingRegisters[i + writeUnit.startAddress()]);
+            writeUnit.setValue(i, writeModel->m_holdingRegisters[i]);
     }
 
     if (auto *reply = modbusDevice->sendReadWriteRequest(readRequest(), writeUnit,
@@ -422,7 +421,7 @@ QModbusDataUnit ModbusUi::readRequest() const
     int startAddress = ui->readAddress->value();
     Q_ASSERT(startAddress >= 0 && startAddress < ROW_COUNT);
 
-    int numberOfEntries = qMin(ui->readSize->currentText().toInt(), ROW_COUNT - startAddress);
+    int numberOfEntries = ui->readSize->currentText().toInt();
     return QModbusDataUnit(table, startAddress, numberOfEntries);
 }
 
@@ -434,6 +433,6 @@ QModbusDataUnit ModbusUi::writeRequest() const
     int startAddress = ui->writeAddress->value();
     Q_ASSERT(startAddress >= 0 && startAddress < ROW_COUNT);
 
-    int numberOfEntries = qMin(ui->writeSize->currentText().toInt(), ROW_COUNT - startAddress);
+    int numberOfEntries = ui->writeSize->currentText().toInt();
     return QModbusDataUnit(table, startAddress, numberOfEntries);
 }

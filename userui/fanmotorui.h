@@ -5,7 +5,7 @@
 #include "modbusui.h"
 #include <QModbusDataUnit>
 
-#include"qmotor/qmotor.h"
+#include"fanmotor/fanmotor.h"
 
 QT_BEGIN_NAMESPACE
 class QModbusClient;
@@ -18,6 +18,7 @@ class FanMotorUi;
 QT_END_NAMESPACE
 
 class QcwIndicatorLamp;
+class QMotor;
 
 class FanMotorUi : public QWidget
 {
@@ -26,6 +27,14 @@ class FanMotorUi : public QWidget
 public:
     explicit FanMotorUi(QWidget *parent = 0);
     ~FanMotorUi();
+
+public:
+    enum PollingState:char{
+        Stop,
+        SingleMotor,
+        MultiMotor,
+        Searching,
+    };
 
 private slots:
     void pollingTimerUpdate();
@@ -41,9 +50,9 @@ private slots:
 
     void on_searchButton_clicked();
 
-    void on_spinBox_startaddress_valueChanged(int arg1);
-
     void on_spinBox_motorNum_valueChanged(int arg1);
+
+    void on_spinBox_currentaddress_valueChanged(int arg1);
 
 private:
     QModbusDataUnit readRequest() const;
@@ -53,13 +62,13 @@ private:
     Ui::FanMotorUi *ui;
     ModbusUi *m_modbusUi;
     QModbusClient* modbusDevice;
-    QVector<QMotor*> m_motor;
-    QVector<QcwIndicatorLamp*> m_commLamp;
+    QVector<QMotor*> m_motors;
     QTimer *m_pollingTimer;
+    int m_realTimeServerAddress;
     int m_currentServerAddress;
     int m_startServerAddress;
     int m_motorNum;
-    bool m_isSearching;
+    PollingState m_pollingState;
 
     void sendOnePolling(int address);
 
