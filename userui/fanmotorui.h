@@ -42,6 +42,7 @@ private slots:
     void onStateChanged(int state);
 
     void on_pushButton_read_clicked();
+
     void readReady();
 
     void on_pushButton_write_clicked();

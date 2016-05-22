@@ -10,6 +10,7 @@
 #include "lamp/qcw_indicatorlamp.h"
 
 #include"fanmotor/qmotor.h"
+#include"qglobal.h"
 
 FanMotorUi::FanMotorUi(QWidget *parent) :
     QWidget(parent),
@@ -22,6 +23,7 @@ FanMotorUi::FanMotorUi(QWidget *parent) :
     m_realTimeServerAddress = ui->spinBox_currentaddress->value();
     m_motorNum = ui->spinBox_motorNum->value();
     m_startServerAddress = 1;
+
     for(int i = 0; i< m_motorNum; i++){
         m_motors.push_back(new QMotor(i+m_startServerAddress));
         ui->table_realtime->setCellWidget(i, 0, m_motors.at(i)->m_motorAddressLabel);
@@ -106,33 +108,31 @@ void FanMotorUi::readReady()
     int __address = __currentAddress - m_startServerAddress;
 
     if (reply->error() == QModbusDevice::NoError) {
+
         const QModbusDataUnit unit = reply->result();
+
+        quint16 *buff;
+        if(unit.startAddress() == g_mSettingsRegisterAddress){//setting read
+            buff = (quint16 *)&m_motors.at(__address)->m_initSetttings;
+        }
+        else if(unit.startAddress() == g_mControllerRegisterAddress){//single motor mode
+            buff = (quint16 *)&m_motors.at(__address)->m_motorController;
+        }
+        else if(unit.startAddress() == g_mRealTimeRegisterAddress){//multi motor mode
+            buff = (quint16 *)&m_motors.at(__address)->m_motorController;
+            buff += g_mRatedRegisterCount;
+        }
+        else if(unit.startAddress() == g_mPIParaRegisterAddress){//pi read
+            buff = (quint16 *)&m_motors.at(__address)->m_PIPara;
+        }
+
+
         for (uint i = 0; i < unit.valueCount(); i++) {
-            const QString entry = tr("Address: %1, Value: %2").arg(unit.startAddress())
+            const QString entry = tr("Address: %1, Value: %2").arg(QString::number(unit.startAddress()+i, 16))
                     .arg(QString::number(unit.value(i), 16));
             ui->textBrowser->append(entry);
 
-            if(unit.startAddress() == g_mSettingsRegisterAddress){//setting read
-                quint16 *buff = (quint16 *)&m_motors.at(__address)->m_initSetttings;
-                *buff++ = unit.value(i);
-
-            }
-            else if(unit.startAddress() == g_mControllerRegisterAddress){//single motor mode
-                quint16 *buff = (quint16 *)&m_motors.at(__address)->m_motorController;
-                *buff++ = unit.value(i);
-
-            }
-            else if(unit.startAddress() == g_mRealTimeRegisterAddress){//multi motor mode
-                quint16 *buff = (quint16 *)&m_motors.at(__address)->m_motorController;
-                buff += g_mRatedRegisterCount;
-                *buff++ = unit.value(i);
-
-            }
-            else if(unit.startAddress() == g_mPIParaRegisterAddress){//pi read
-                quint16 *buff = (quint16 *)&m_motors.at(__address)->m_PIPara;
-                *buff++ = unit.value(i);
-
-            }
+            *buff++ = unit.value(i);
 
         }
     } else if (reply->error() == QModbusDevice::ProtocolError) {
@@ -182,6 +182,22 @@ void FanMotorUi::readReady()
 
     if(m_realTimeServerAddress == __currentAddress){
         ui->lamp_comState->setLampState(m_motors.at(__address)->m_commLamp->getLampState());
+        ui->lamp_runState->setLampState(m_motors.at(__address)->m_runLamp->getLampState());
+        ui->lcdNumber_targetPower->display(m_motors.at(__address)->m_motorController.m_targetpower);
+        ui->lcdNumber_nowPower->display(m_motors.at(__address)->m_motorController.m_nowpower);
+        ui->lcdNumber_speedRef->display(m_motors.at(__address)->m_motorController.m_speedRef);
+        ui->lcdNumber_speedFbk->display(m_motors.at(__address)->m_motorController.m_speedFbk);
+
+        if(m_pollingState == PollingState::Stop){
+            QAbstractItemModel *__model = ui->table_settings->model();
+            quint16 *__buffPtr = (quint16 *)&m_motors.at(__address)->m_initSetttings;
+            for(unsigned char i = 0; i<3; i++){
+                for(unsigned char j = 1; j<5; j++){
+                    __model->setData(__model->index(i,j), *__buffPtr);
+                    __buffPtr++;
+                }
+            }
+        }
     }
 
     reply->deleteLater();
@@ -203,9 +219,21 @@ void FanMotorUi::on_pushButton_write_clicked()//write settings
     if (!modbusDevice)
         return;
 
-    QModbusDataUnit writeUnit = writeRequest();
+    QAbstractItemModel *__model = ui->table_settings->model();
+    int __address = ui->spinBox_currentaddress->value()-m_startServerAddress;
+    quint16 *buff = (quint16 *)&m_motors.at(__address)->m_initSetttings;
 
-    quint16 *buff = (quint16 *)&m_motors.at(ui->spinBox_currentaddress->value()-m_startServerAddress)->m_initSetttings;
+    //get data from tableview
+    for(unsigned char i = 0; i<3; i++){
+        for(unsigned char j = 1; j<5; j++){
+            *buff = (quint16)__model->data(__model->index(i, j)).toInt();
+            buff++;
+        }
+    }
+
+    QModbusDataUnit writeUnit = writeRequest();
+    buff = (quint16 *)&m_motors.at(__address)->m_initSetttings;
+
     for (uint i = 0; i < writeUnit.valueCount(); i++) {
 
         writeUnit.setValue(i, *buff++);
@@ -381,3 +409,4 @@ void FanMotorUi::on_spinBox_currentaddress_valueChanged(int arg1)
 {
     m_realTimeServerAddress = arg1;
 }
+

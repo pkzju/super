@@ -22,8 +22,6 @@ enum class FanMotorState : char{
     m_stop = 0,
     m_error,
     m_run,
-    m_stall,   // 堵转状态
-    m_overSpd
 };
 
 enum class FanCommunicationState : char{
