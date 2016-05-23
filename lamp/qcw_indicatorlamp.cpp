@@ -49,6 +49,12 @@ void QcwIndicatorLamp::paintEvent(QPaintEvent *)
         rg.setColorAt(0.6, QColor(0, 210, 0));
         rg.setColorAt(1, QColor(0, 166, 0));
     }
+    else if(lamp_state == QcwIndicatorLamp::lamp_yellow)
+    {
+        rg.setColorAt(0, QColor(245, 245, 0));
+        rg.setColorAt(0.6, QColor(210, 210, 0));
+        rg.setColorAt(1, QColor(166, 166, 0));
+    }
     else if(lamp_state == QcwIndicatorLamp::lamp_blue)
     {
         rg.setColorAt(0, QColor(0, 0, 245));

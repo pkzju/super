@@ -58,10 +58,14 @@ void QMotor::update()
 
     if(m_motorController.m_runState == FanMotorState::m_run)
         m_runLamp->setLampState(QcwIndicatorLamp::lamp_green);
+    else
+        m_runLamp->setLampState(QcwIndicatorLamp::lamp_red);
 
     if(m_communicationState == FanCommunicationState::m_connect)
         m_commLamp->setLampState(QcwIndicatorLamp::lamp_green);
-    else
+    else if(m_communicationState == FanCommunicationState::m_disconnect)
         m_commLamp->setLampState(QcwIndicatorLamp::lamp_red);
+    else if(m_communicationState == FanCommunicationState::m_error)
+        m_commLamp->setLampState(QcwIndicatorLamp::lamp_yellow);
 
 }

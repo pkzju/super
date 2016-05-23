@@ -42,7 +42,7 @@ void CenterWindow::initUI()
     qssBuilder = new QssBuilder;
     CANUi *canUi = CANUi::getS_Instance();
     SerialPortUi *serialportsettingsdialog = new SerialPortUi;
-    MPlotUi *plotUi = new MPlotUi;
+    MPlotUi *plotUi = MPlotUi::getInstance();
     FTabWidget *Com = new FTabWidget;
     ModbusUi *modbusui = ModbusUi::getInstance();
     FanMotorUi *fanmotorui = new FanMotorUi;

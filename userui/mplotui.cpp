@@ -3,14 +3,16 @@
 
 #include "qcustomplot/qcustomplot.h"
 
+MPlotUi *MPlotUi::instance = nullptr;
+
 MPlotUi::MPlotUi(QWidget *parent) :
     QWidget(parent),
     ui(new Ui::MPlotUi)
 {
     ui->setupUi(this);
-    setupRealtimeDataDemo(ui->customPlot1);
-    setupRealtimeDataDemo(ui->customPlot2);
-    setupRealtimeDataDemo(ui->customPlot3);
+    setupRealtimeDataDemo(ui->customPlot);
+    //    setupRealtimeDataDemo(ui->customPlot2);
+    //    setupRealtimeDataDemo(ui->customPlot3);
 }
 
 MPlotUi::~MPlotUi()
@@ -18,8 +20,21 @@ MPlotUi::~MPlotUi()
     delete ui;
 }
 
+MPlotUi *MPlotUi::getInstance()
+{
+    if(!instance)
+    {
+        instance = new MPlotUi();
+    }
+    return instance;
+}
+
 void MPlotUi::setupRealtimeDataDemo(QCustomPlot *customPlot)
 {
+#if QT_VERSION < QT_VERSION_CHECK(4, 7, 0)
+    QMessageBox::critical(this, "", "You're using Qt < 4.7, the realtime data demo needs functions that are available with Qt 4.7 to work properly");
+#endif
+
     // include this section to fully disable antialiasing for higher performance:
     customPlot->setNotAntialiasedElements(QCP::aeAll);
     QFont font;
@@ -102,49 +117,55 @@ void MPlotUi::setupRealtimeDataDemo(QCustomPlot *customPlot)
     axisRectGradient.setColorAt(1, QColor(30, 30, 30));
     customPlot->axisRect()->setBackground(axisRectGradient);
 
-
-
     // make left and bottom axes transfer their ranges to right and top axes:
     connect(customPlot->xAxis, SIGNAL(rangeChanged(QCPRange)), customPlot->xAxis2, SLOT(setRange(QCPRange)));
     connect(customPlot->yAxis, SIGNAL(rangeChanged(QCPRange)), customPlot->yAxis2, SLOT(setRange(QCPRange)));
 
-    //  // setup a timer that repeatedly calls MainWindow::realtimeDataSlot:
-    //  connect(&dataTimer, SIGNAL(timeout()), this, SLOT(realtimeDataSlot()));
-    //  dataTimer.start(0); // Interval 0 means to refresh as fast as possible
 }
 
+
+#include"qdebug.h"
 void MPlotUi::realtimeDataSlot(FanMotorController motorctr)
 {
 
     double key = QDateTime::currentDateTime().toMSecsSinceEpoch()/1000.0;
-    uint value0 = motorctr.m_speedRef;
-    uint value1 = motorctr.m_speedFbk;
-    uint value2 = 0;
 
     // add data to lines:
-    ui->customPlot1->graph(0)->addData(key, value0);
-    ui->customPlot1->graph(1)->addData(key, value1);
-    ui->customPlot1->graph(2)->addData(key, value2);
+    ui->customPlot->graph(0)->addData(key, motorctr.m_speedRef+5);
+    ui->customPlot->graph(1)->addData(key, motorctr.m_speedFbk+3);
+    ui->customPlot->graph(2)->addData(key, 0);
     // set data of dots:
-    ui->customPlot1->graph(3)->clearData();
-    ui->customPlot1->graph(3)->addData(key, value0);
-    ui->customPlot1->graph(4)->clearData();
-    ui->customPlot1->graph(4)->addData(key, value1);
-    ui->customPlot1->graph(5)->clearData();
-    ui->customPlot1->graph(5)->addData(key, value2);
-    // remove data of lines that's outside visible range:
-    if(ui->customPlot1->graph(0)->data()->count()>300)
-        ui->customPlot1->graph(0)->removeData(ui->customPlot1->graph(0)->data()->firstKey());
-    if(ui->customPlot1->graph(1)->data()->count()>300)
-        ui->customPlot1->graph(1)->removeData(ui->customPlot1->graph(1)->data()->firstKey());
-    if(ui->customPlot1->graph(2)->data()->count()>300)
-        ui->customPlot1->graph(2)->removeData(ui->customPlot1->graph(2)->data()->firstKey());
-    // rescale value (vertical) axis to fit the current data:
-    ui->customPlot1->graph(0)->rescaleValueAxis(false);
-    ui->customPlot1->graph(1)->rescaleValueAxis(true);
-    ui->customPlot1->graph(2)->rescaleValueAxis(true);
+    ui->customPlot->graph(3)->clearData();
+    ui->customPlot->graph(3)->addData(key, motorctr.m_speedRef+5);
+    ui->customPlot->graph(4)->clearData();
+    ui->customPlot->graph(4)->addData(key, motorctr.m_speedFbk+3);
+    ui->customPlot->graph(5)->clearData();
+    ui->customPlot->graph(5)->addData(key, 0);
 
-    ui->customPlot1->xAxis->setRange(ui->customPlot1->graph(0)->data()->firstKey(), ui->customPlot1->graph(0)->data()->lastKey()+0.1);
-    ui->customPlot1->replot();
+    // remove data of lines that's outside visible range:
+    if(ui->customPlot->graph(0)->data()->count()>300)
+        ui->customPlot->graph(0)->removeData(ui->customPlot->graph(0)->data()->firstKey());
+    if(ui->customPlot->graph(1)->data()->count()>300)
+        ui->customPlot->graph(1)->removeData(ui->customPlot->graph(1)->data()->begin().key());
+    if(ui->customPlot->graph(2)->data()->count()>300)
+        ui->customPlot->graph(2)->removeData(ui->customPlot->graph(2)->data()->begin().key());
+    // rescale value (vertical) axis to fit the current data:
+    ui->customPlot->graph(0)->rescaleValueAxis(false);
+    ui->customPlot->graph(1)->rescaleValueAxis(true);
+    ui->customPlot->graph(2)->rescaleValueAxis(true);
+
+
+
+    // make key axis range scroll with the data (at a constant range size of 8):
+    //  ui->customPlot->xAxis->setRange(key+0.25, 8, Qt::AlignRight);
+    if(ui->customPlot->graph(2)->data()->count()<300){
+
+        double unit = (ui->customPlot->graph(0)->data()->lastKey()-ui->customPlot->graph(0)->data()->begin().key())/ui->customPlot->graph(2)->data()->count();
+        ui->customPlot->xAxis->setRange(ui->customPlot->graph(0)->data()->lastKey()-300*unit, ui->customPlot->graph(0)->data()->lastKey()+0.1);
+    }
+    else
+        ui->customPlot->xAxis->setRange(ui->customPlot->graph(0)->data()->begin().key(), ui->customPlot->graph(0)->data()->lastKey()+0.1);
+
+    ui->customPlot->replot();
 
 }

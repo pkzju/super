@@ -15,7 +15,7 @@
 #include <qdebug.h>
 
 
-MainWindow* MainWindow::instance = 0;
+MainWindow* MainWindow::instance = nullptr;
 
 MainWindow::MainWindow(QWidget *parent) :
     FMainWindow(parent),

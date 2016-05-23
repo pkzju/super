@@ -4,7 +4,7 @@
 #include <QWidget>
 #include "modbusui.h"
 #include <QModbusDataUnit>
-
+#include "fanmotor/fanmotor.h"
 
 QT_BEGIN_NAMESPACE
 class QModbusClient;
@@ -18,6 +18,7 @@ QT_END_NAMESPACE
 
 class QcwIndicatorLamp;
 class QMotor;
+struct FanMotorController;
 
 class FanMotorUi : public QWidget
 {
@@ -57,6 +58,9 @@ private slots:
 private:
     QModbusDataUnit readRequest() const;
     QModbusDataUnit writeRequest() const;
+
+signals:
+    void updatePlotUi(FanMotorController motorctr);
 
 private:
     Ui::FanMotorUi *ui;

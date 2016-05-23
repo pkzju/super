@@ -18,12 +18,17 @@ class MPlotUi : public QWidget
 public:
     explicit MPlotUi(QWidget *parent = 0);
     ~MPlotUi();
+    static MPlotUi *getInstance();
 
 public slots:
     void realtimeDataSlot(FanMotorController motorctr);
+
 private:
     Ui::MPlotUi *ui;
     void setupRealtimeDataDemo(QCustomPlot *customPlot);
+public:
+    static MPlotUi *instance;
+    FanMotorController m_motorctr;
 };
 
 #endif // MPLOTUI_H

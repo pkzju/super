@@ -10,6 +10,7 @@
 #include "lamp/qcw_indicatorlamp.h"
 
 #include"fanmotor/qmotor.h"
+#include "userui/mplotui.h"
 
 FanMotorUi::FanMotorUi(QWidget *parent) :
     QWidget(parent),
@@ -51,6 +52,9 @@ FanMotorUi::FanMotorUi(QWidget *parent) :
     m_motors.at(0)->m_communicationState =FanCommunicationState::m_connect;
     m_motors.at(1)->m_communicationState =FanCommunicationState::m_connect;
     m_motors.at(2)->m_communicationState =FanCommunicationState::m_connect;
+
+    MPlotUi*__mPlotUi = MPlotUi::getInstance();
+    connect(this, &FanMotorUi::updatePlotUi, __mPlotUi, &MPlotUi::realtimeDataSlot);
 
 }
 
@@ -134,10 +138,15 @@ void FanMotorUi::readReady()
             *buff++ = unit.value(i);
 
         }
+
+        m_motors.at(__address)->m_communicationState =FanCommunicationState::m_connect;
+
     } else if (reply->error() == QModbusDevice::ProtocolError) {
         qDebug() <<reply->errorString();
         ui->textBrowser->append(tr("Read response error: %1 (Mobus exception: 0x%2)").
                                 arg(reply->errorString()).arg(reply->rawResult().exceptionCode(), -1, 16));
+
+        m_motors.at(__address)->m_communicationState =FanCommunicationState::m_error;
     } else {
         qDebug() << reply->errorString();
         ui->textBrowser->append(tr("Read response error: %1 (code: 0x%2)").
@@ -196,6 +205,10 @@ void FanMotorUi::readReady()
                     __buffPtr++;
                 }
             }
+        }
+        else if(m_pollingState == PollingState::SingleMotor){
+            emit updatePlotUi(m_motors.at(__address)->m_motorController);
+            qDebug()<<"emit.....";
         }
     }
 

@@ -21,12 +21,13 @@ enum class FanMotorError : char{
 enum class FanMotorState : char{
     m_stop = 0,
     m_error,
-    m_run,
+    m_run
 };
 
 enum class FanCommunicationState : char{
     m_disconnect = 0,
     m_connect,
+    m_error
 };
 
 

@@ -39,6 +39,7 @@ public:
         lamp_grey  ,
         lamp_red   ,
         lamp_green ,
+        lamp_yellow,
         lamp_blue  ,
         lamp_alarm
     };
