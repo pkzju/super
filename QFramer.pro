@@ -59,7 +59,8 @@ SOURCES += \
     thread/canthread.cpp \
     thread/serialportthread.cpp \
     parser/protocal.cpp \
-    fanmotor/qmotor.cpp
+    fanmotor/qmotor.cpp \
+    qcustomplot/qcustomplot.cpp
 
 # header
 HEADERS  += \
@@ -79,7 +80,8 @@ HEADERS  += \
     parser/protocal.h \
     qmotor.h \
     fanmotor/fanmotor.h \
-    fanmotor/qmotor.h
+    fanmotor/qmotor.h \
+    qcustomplot/qcustomplot.h
 
 # resources
 RESOURCES += \

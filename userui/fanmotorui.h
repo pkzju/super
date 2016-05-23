@@ -5,7 +5,6 @@
 #include "modbusui.h"
 #include <QModbusDataUnit>
 
-#include"fanmotor/fanmotor.h"
 
 QT_BEGIN_NAMESPACE
 class QModbusClient;

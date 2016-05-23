@@ -10,7 +10,6 @@
 #include "lamp/qcw_indicatorlamp.h"
 
 #include"fanmotor/qmotor.h"
-#include"qglobal.h"
 
 FanMotorUi::FanMotorUi(QWidget *parent) :
     QWidget(parent),
